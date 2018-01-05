@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 
 public class LevelSelect extends AppCompatActivity {
 
+    Button btnLvl1;
     ImageButton btnHome;
 
     @Override
@@ -17,7 +18,17 @@ public class LevelSelect extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_select);
 
+        btnLvl1 = (Button) findViewById(R.id.button_lvl1);
         btnHome = (ImageButton) findViewById(R.id.button_home);
+
+
+        btnLvl1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent chooseLevel1 = new Intent(getApplicationContext(), Quiz.class);
+                startActivity(chooseLevel1);
+            }
+        });
 
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
