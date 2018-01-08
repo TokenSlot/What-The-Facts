@@ -184,7 +184,7 @@ public class Quiz extends AppCompatActivity {
     public void vibration() {
         Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         // Vibrate for 500 milliseconds
-        v.vibrate(500);
+        v.vibrate(200);
     }
 
 
