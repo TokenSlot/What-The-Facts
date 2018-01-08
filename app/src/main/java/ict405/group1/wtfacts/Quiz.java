@@ -1,7 +1,9 @@
 package ict405.group1.wtfacts;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Vibrator;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,11 +30,11 @@ public class Quiz extends AppCompatActivity {
 
     ArrayList<ArrayList<String>> quizArray = new ArrayList<>();
 
+    // Format >> {Question, Answer, Choice1, Choice 2, Choice 3}
     String quizData[][] = {
-            // Format >> {Question, Answer, Choice1, Choice 2, Choice 3}
             {"Pollination by birds is called ________", "Ornithophily", "Anemophily", "Autogamy", "Entomophily"},
             {"What is the fastest-running terrestrial animal?", "Cheetah", "Lion", "Man", "Jaguar"},
-            {"Which of these mammals lay eggs?", "Platypus", "Beavers", "Tarsier", "Antelope"}
+            {"Which of these mammals lay eggs?", "Platypus", "Beavers", "Tarsier", "Antelope"},
     };
 
     private int questionCount = quizData.length;
@@ -43,16 +45,16 @@ public class Quiz extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
         int level = 1;
 
-        textQuestions = (TextView) findViewById(R.id.textQuestion);
-        textLevel = (TextView) findViewById(R.id.textLevel);
-        textQuestionNum = (TextView) findViewById(R.id.textQuestionNum);
-        textScore = (TextView) findViewById(R.id.textScore);
-        textLife = (TextView) findViewById(R.id.textLife);
+        textQuestions = findViewById(R.id.textQuestion);
+        textLevel = findViewById(R.id.textLevel);
+        textQuestionNum = findViewById(R.id.textQuestionNum);
+        textScore = findViewById(R.id.textScore);
+        textLife = findViewById(R.id.textLife);
 
-        btnChoice1 = (Button) findViewById(R.id.btnChoice1);
-        btnChoice2 = (Button) findViewById(R.id.btnChoice2);
-        btnChoice3 = (Button) findViewById(R.id.btnChoice3);
-        btnChoice4 = (Button) findViewById(R.id.btnChoice4);
+        btnChoice1 = findViewById(R.id.btnChoice1);
+        btnChoice2 = findViewById(R.id.btnChoice2);
+        btnChoice3 = findViewById(R.id.btnChoice3);
+        btnChoice4 = findViewById(R.id.btnChoice4);
 
         String showLevel = "Level " + level;
         textLevel.setText(showLevel);
@@ -78,18 +80,19 @@ public class Quiz extends AppCompatActivity {
         int randomNum = random.nextInt(quizArray.size());
 
         ArrayList<String> quiz = quizArray.get(randomNum);
-
+        //Sets question and the answer into a variable
         textQuestions.setText(quiz.get(0));
         correctAnswer = quiz.get(1);
 
+        //Shuffles the choices
         quiz.remove(0);
         Collections.shuffle(quiz);
-
+        //Sets the choices randomly
         btnChoice1.setText(quiz.get(0));
         btnChoice2.setText(quiz.get(1));
         btnChoice3.setText(quiz.get(2));
         btnChoice4.setText(quiz.get(3));
-
+        //Removes the question and its choices
         quizArray.remove(randomNum);
     }
 
@@ -100,9 +103,6 @@ public class Quiz extends AppCompatActivity {
         textLife.setText(showLife);
         textQuestionNum.setText(qText);
         textScore.setText(showScore);
-        if (userLife == 0) {
-            gameOver();
-        }
     }
 
     public void gameOver() {
@@ -128,9 +128,10 @@ public class Quiz extends AppCompatActivity {
     }
 
     public void checkAnswer(View view) {
-        Button answerBtn = (Button) findViewById(view.getId());
+        Button answerBtn = findViewById(view.getId());
         String btnText = answerBtn.getText().toString();
 
+        //Adds score when the answer is correct
         if (btnText.equals(correctAnswer)) {
             levelScore = levelScore + 1;
             mScore = mScore + 25;
@@ -166,11 +167,25 @@ public class Quiz extends AppCompatActivity {
         });
         quizPrompt.setCancelable(false);
 
+        //Checks if the answer is wrong else correct dialog will appear
         if (!correctAnswer.equals(btnText) && userLife != 0) {
             userLife = userLife - 1;
             updateTextViews();
+            vibration();
+            //When userLife reaches 0 when subtracted by 1, game over dialog will appear
+            if (userLife == 0) {
+                gameOver();
+            }
         } else {
             quizPrompt.show();
         }
     }
+
+    public void vibration() {
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        // Vibrate for 500 milliseconds
+        v.vibrate(500);
+    }
+
+
 }
