@@ -20,23 +20,23 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_marginLeft="6dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
             android:text="Level"
             android:textColor="@android:color/white"
-            android:layout_marginTop="6dp"
-            android:layout_marginStart="6dp"
-            android:layout_marginLeft="6dp"
             android:textSize="25sp" />
 
         <ImageButton
             android:id="@+id/btnSettings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:padding="16dp"
+            android:layout_alignParentRight="true"
             android:background="@color/colorForestGreen"
-            android:src="@drawable/ic_settings"
-            android:contentDescription="Settings" />
+            android:contentDescription="Settings"
+            android:padding="16dp"
+            android:src="@drawable/ic_settings" />
 
     </RelativeLayout>
 
@@ -45,21 +45,21 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_margin="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:text="Score"/>
+            android:layout_margin="6dp"
+            android:text="Score" />
 
         <TextView
             android:id="@+id/textScore"
-            android:layout_margin="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:text="0"/>
+            android:layout_alignParentRight="true"
+            android:layout_margin="6dp"
+            android:text="0" />
 
     </RelativeLayout>
 

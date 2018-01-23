@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class Quiz extends AppCompatActivity {
+public class Quiz2 extends AppCompatActivity {
 
     private userData user = new userData();
 
@@ -32,9 +32,7 @@ public class Quiz extends AppCompatActivity {
 
     // Format >> {Question, Answer, Choice1, Choice 2, Choice 3}
     String quizData[][] = {
-            {"Pollination by birds is called ________", "Ornithophily", "Anemophily", "Autogamy", "Entomophily"},
-            {"What is the fastest-running terrestrial animal?", "Cheetah", "Lion", "Man", "Jaguar"},
-            {"Which of these mammals lay eggs?", "Platypus", "Beavers", "Tarsier", "Antelope"},
+            {"The Question", "Answer", "Choice1", "Choice2", "Choice3"},
     };
 
     private int questionCount = quizData.length;
@@ -43,7 +41,7 @@ public class Quiz extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        int level = 1;
+        int level = 2;
 
         textQuestions = findViewById(R.id.textQuestion);
         textLevel = findViewById(R.id.textLevel);
@@ -146,7 +144,6 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Intent selectLevel = new Intent(getApplicationContext(), LevelSelect.class);
-                selectLevel.putExtra("scoreQuiz1", levelScore);
                 startActivity(selectLevel);
             }
         });
@@ -158,7 +155,7 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (questionNum == questionCount) {
-                        done.show();
+                    done.show();
                 } else {
                     questionNum++;
                     showNextQuiz();
@@ -187,16 +184,6 @@ public class Quiz extends AppCompatActivity {
         // Vibrate for 500 milliseconds
         v.vibrate(200);
     }
-
-
-    /* TODO
-    * Switch Questions according to selected level
-    * Back button + Menu
-    * Designs
-    * Landscape? Design
-    * Actual Questions
-    * Sound effects. Maybe
-    * -- Before final week of January -- */
 
 
 }

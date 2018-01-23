@@ -17,8 +17,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LevelSelect" />
-        <activity android:name=".Quiz"></activity>
+        <activity android:name=".LevelSelect"
+            android:parentActivityName=".MainMenu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainMenu"/>
+        </activity>
+
+        <activity android:name=".Quiz"
+            android:parentActivityName=".LevelSelect" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LevelSelect"/>
+        </activity>
+
+        <activity android:name=".Quiz2"
+            android:parentActivityName=".LevelSelect" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LevelSelect"/>
+        </activity>
     </application>
 
 </manifest>
