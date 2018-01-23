@@ -190,6 +190,7 @@ public class Quiz extends AppCompatActivity {
 
 
     /* TODO
+    * Database
     * Switch Questions according to selected level
     * Back button + Menu
     * Designs
