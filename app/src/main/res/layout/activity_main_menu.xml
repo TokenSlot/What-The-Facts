@@ -8,20 +8,56 @@
     android:orientation="vertical"
     tools:context="ict405.group1.wtfacts.MainMenu">
 
-    <TextView
+    <ImageView
+        android:layout_marginTop="15dp"
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="45sp"
-        android:gravity="center"
-        android:text="What The Facts?"/>
+        android:adjustViewBounds="true"
+        android:maxWidth="200dp"
+        android:maxHeight="200dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/logo_img" />
 
-    <Button
-        android:id="@+id/btnStart"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="START"
-        android:layout_marginTop="60dp"
-        android:textSize="30sp"
-        android:padding="15dp"/>
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnStart"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:padding="30dp"
+            android:background="@drawable/btngreen_bg"
+            app:srcCompat="@drawable/play_arrow" />
+
+        <ImageButton
+            android:id="@+id/btnOptions"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            android:layout_margin="2dp"
+            android:background="@drawable/btndefault_bg"
+            app:srcCompat="@drawable/settings_img" />
+
+        <ImageButton
+            android:id="@+id/btnExit"
+            android:padding="30dp"
+            android:layout_weight="1"
+            android:layout_margin="2dp"
+            android:background="@drawable/btnred_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/exit_img" />
+
+    </LinearLayout>
 
 </LinearLayout>

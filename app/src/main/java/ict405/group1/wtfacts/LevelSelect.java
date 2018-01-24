@@ -16,6 +16,12 @@ public class LevelSelect extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_select);
+
+        if( getIntent().getBooleanExtra("Exit me", false)){
+            finish();
+            return;
+        }
+
         btnLvl1 = (Button) findViewById(R.id.button_lvl1);
         btnLvl2 = (Button) findViewById(R.id.button_lvl2);
         btnHome = (ImageButton) findViewById(R.id.button_home);
@@ -36,6 +42,7 @@ public class LevelSelect extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent chooseLevel = new Intent(getApplicationContext(), Quiz2.class);
+                chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(chooseLevel);
             }
         });
@@ -44,6 +51,7 @@ public class LevelSelect extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent chooseLevel = new Intent(getApplicationContext(), Quiz.class);
+                chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(chooseLevel);
             }
         });
@@ -52,9 +60,17 @@ public class LevelSelect extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent mainMenu = new Intent(getApplicationContext(), MainMenu.class);
+                mainMenu.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(mainMenu);
             }
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent mainMenu = new Intent(getApplicationContext(), MainMenu.class);
+        startActivity(mainMenu);
+    }
+
 }

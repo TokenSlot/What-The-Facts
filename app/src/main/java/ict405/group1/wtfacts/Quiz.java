@@ -182,6 +182,11 @@ public class Quiz extends AppCompatActivity {
         }
     }
 
+    @Override
+    public  void onBackPressed() {
+        //Show Settings
+    }
+
     public void vibration() {
         Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         // Vibrate for 500 milliseconds

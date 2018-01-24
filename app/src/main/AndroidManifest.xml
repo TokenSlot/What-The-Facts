@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ict405.group1.wtfacts">
-    <uses-permission
-        android:name="android.permission.VIBRATE"/>
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,26 +18,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LevelSelect"
-            android:parentActivityName=".MainMenu" >
+        <activity
+            android:name=".LevelSelect"
+            android:parentActivityName=".MainMenu">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainMenu"/>
+                android:value=".MainMenu" />
         </activity>
-
-        <activity android:name=".Quiz"
-            android:parentActivityName=".LevelSelect" >
+        <activity
+            android:name=".Quiz"
+            android:parentActivityName=".LevelSelect">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LevelSelect"/>
+                android:value=".LevelSelect" />
         </activity>
-
-        <activity android:name=".Quiz2"
-            android:parentActivityName=".LevelSelect" >
+        <activity
+            android:name=".Quiz2"
+            android:parentActivityName=".LevelSelect">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LevelSelect"/>
+                android:value=".LevelSelect" />
         </activity>
+        <activity
+            android:name=".Exit"
+            android:label="@string/title_activity_exit"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
