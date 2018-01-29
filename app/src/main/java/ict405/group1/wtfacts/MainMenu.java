@@ -16,7 +16,10 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-
+        if( getIntent().getBooleanExtra("Exit me", false)){
+            finish();
+            return;
+        }
 
         ImageButton btnStart = (ImageButton) findViewById(R.id.btnStart);
         ImageButton btnOptions = findViewById(R.id.btnOptions);
@@ -34,7 +37,7 @@ public class MainMenu extends AppCompatActivity {
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LevelSelect.class);
+                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Exit me", true);
                 startActivity(intent);

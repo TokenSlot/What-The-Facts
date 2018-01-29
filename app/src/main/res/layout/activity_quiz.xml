@@ -33,9 +33,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:background="@color/colorForestGreen"
+            android:background="@drawable/btngreen_bg"
             android:contentDescription="Settings"
-            android:padding="16dp"
+            android:padding="10dp"
+            android:layout_margin="5dp"
             android:src="@drawable/ic_settings" />
 
     </RelativeLayout>
@@ -100,15 +101,15 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Question"
-            android:textSize="25sp"/>
+            android:text="Question?"
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/textQuestionNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Question 0/0"
-            android:textSize="12sp"/>
+            android:textSize="11sp"/>
     </LinearLayout>
 
     <Button
@@ -118,35 +119,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CHOICE 1"
-        android:onClick="checkAnswer"/>
+        android:onClick="checkAnswer"
+        android:background="@drawable/btndefault_bg" />
 
     <Button
         android:id="@+id/btnChoice2"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
+        android:layout_marginTop="6dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CHOICE 2"
         android:onClick="checkAnswer"
-        />
+        android:background="@drawable/btndefault_bg" />
 
     <Button
         android:id="@+id/btnChoice3"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
+        android:layout_marginTop="6dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CHOICE 3"
-        android:onClick="checkAnswer"/>
+        android:onClick="checkAnswer"
+        android:background="@drawable/btndefault_bg"/>
 
     <Button
         android:id="@+id/btnChoice4"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
-        android:layout_marginBottom="6dp"
+        android:layout_margin="6dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CHOICE 4"
-        android:onClick="checkAnswer"/>
+        android:onClick="checkAnswer"
+        android:background="@drawable/btndefault_bg"/>
 
 </LinearLayout>

@@ -32,7 +32,17 @@ public class Quiz2 extends AppCompatActivity {
 
     // Format >> {Question, Answer, Choice1, Choice 2, Choice 3}
     String quizData[][] = {
-            {"The Question", "Answer", "Choice1", "Choice2", "Choice3"},
+            //Samples
+            {"Which company did Valve cooperate with in the creation of the Vive?","HTC","Oculus","Google","Razer"},
+            {"Which company was established on April 1st, 1976 by Steve Jobs, Steve Wozniak and Ronald Wayne?","Apple","Microsoft","Atari","Commodore"},
+            {"What's the name of Batman's parents?","Thomas & Martha","Joey & Jackie","Jason & Sarah","Todd & Mira"},
+            {"What does a funambulist walk on?","A Tight Rope","Broken Glass","Balls","The Moon"},
+            {"In past times, what would a gentleman keep in his fob pocket?","Watch","Money","Keys","Notebook"},
+            {"What is the largest organ of the human body?","Skin","Heart","large Intestine","Liver"},
+            {"Which sign of the zodiac is represented by the Crab?","Cancer","Libra","Virgo","Sagittarius"},
+            {"What does the 'S' stand for in the abbreviation SIM, as in SIM card?","Subscriber","Single","Secure","Solid"},
+            {"Which American president appears on a one dollar bill?","George Washington","Thomas Jefferson","Abraham Lincoln","Benjamin Franklin"},
+            {"What is Tasmania?","An Australian State","An ice-cream flavor","A disorder","A cartoon character"},
     };
 
     private int questionCount = quizData.length;
@@ -41,7 +51,9 @@ public class Quiz2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        int level = 2;
+
+        Intent getScore1 = getIntent();
+        int level = getScore1.getIntExtra("quizLvl", 0);
 
         textQuestions = findViewById(R.id.textQuestion);
         textLevel = findViewById(R.id.textLevel);
@@ -95,7 +107,7 @@ public class Quiz2 extends AppCompatActivity {
     }
 
     public void updateTextViews() {
-        String qText = "Question " + questionNum + "/" + quizData.length;
+        String qText = "Question " + questionNum + "/" + questionCount;
         String showScore = "" + mScore;
         String showLife = "" + userLife;
         textLife.setText(showLife);
@@ -110,14 +122,16 @@ public class Quiz2 extends AppCompatActivity {
         gameOver.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Intent chooseLevel1 = new Intent(getApplicationContext(), Quiz.class);
-                startActivity(chooseLevel1);
+                Intent chooseLevel = new Intent(getApplicationContext(), Quiz2.class);
+                chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(chooseLevel);
             }
         });
         gameOver.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Intent mainMenu = new Intent(getApplicationContext(), MainMenu.class);
+                mainMenu.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(mainMenu);
             }
         });
@@ -144,6 +158,7 @@ public class Quiz2 extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Intent selectLevel = new Intent(getApplicationContext(), LevelSelect.class);
+                selectLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(selectLevel);
             }
         });
@@ -179,11 +194,27 @@ public class Quiz2 extends AppCompatActivity {
         }
     }
 
+    @Override
+    public  void onBackPressed() {
+        //Show Settings
+    }
+
     public void vibration() {
         Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         // Vibrate for 500 milliseconds
         v.vibrate(200);
     }
+
+
+    /* TODO
+    * Database
+    * Switch Questions according to selected level
+    * Back button + Menu
+    * Designs
+    * Landscape? Design
+    * Actual Questions
+    * Sound effects. Maybe
+    * -- Before final week of January -- */
 
 
 }
