@@ -10,16 +10,20 @@ import android.widget.ImageButton;
 
 public class LevelSelect extends AppCompatActivity {
 
-    Button btnLvl1, btnLvl2;
+    Button btnLvl1, btnLvl2, btnLvl3, btnLvl4, btnLvl5;
     ImageButton btnHome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_select);
 
-        btnLvl1 = (Button) findViewById(R.id.button_lvl1);
-        btnLvl2 = (Button) findViewById(R.id.button_lvl2);
-        btnHome = (ImageButton) findViewById(R.id.button_home);
+        btnLvl1 = findViewById(R.id.button_lvl1);
+        btnLvl2 = findViewById(R.id.button_lvl2);
+        btnLvl3 = findViewById(R.id.button_lvl3);
+        btnLvl4 = findViewById(R.id.button_lvl3);
+        btnLvl5 = findViewById(R.id.button_lvl3);
+
+        btnHome = findViewById(R.id.button_home);
 
         /**
         Intent getScore1 = getIntent();
@@ -33,25 +37,56 @@ public class LevelSelect extends AppCompatActivity {
         }
         **/
 
-        btnLvl2.setOnClickListener(new View.OnClickListener() {
+        btnLvl1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent chooseLevel = new Intent(getApplicationContext(), Quiz2.class);
+                Intent chooseLevel = new Intent(getApplicationContext(), Quiz.class);
                 chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 chooseLevel.putExtra("quizLvl", 1);
                 startActivity(chooseLevel);
             }
         });
 
-        btnLvl1.setOnClickListener(new View.OnClickListener() {
+        btnLvl2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent chooseLevel = new Intent(getApplicationContext(), Quiz.class);
+                Intent chooseLevel = new Intent(getApplicationContext(), Quiz2.class);
                 chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 chooseLevel.putExtra("quizLvl", 2);
                 startActivity(chooseLevel);
             }
         });
+
+        btnLvl3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent chooseLevel = new Intent(getApplicationContext(), Quiz3.class);
+                chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                chooseLevel.putExtra("quizLvl", 2);
+                startActivity(chooseLevel);
+            }
+        });
+
+        btnLvl4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent chooseLevel = new Intent(getApplicationContext(), Quiz4.class);
+                chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                chooseLevel.putExtra("quizLvl", 2);
+                startActivity(chooseLevel);
+            }
+        });
+
+        btnLvl5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent chooseLevel = new Intent(getApplicationContext(), Quiz5.class);
+                chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                chooseLevel.putExtra("quizLvl", 2);
+                startActivity(chooseLevel);
+            }
+        });
+
 
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +22,8 @@ public class Quiz extends AppCompatActivity {
     private userData user = new userData();
 
     private TextView textLevel, textQuestions, textQuestionNum, textScore, textLife;
-    private Button btnChoice1, btnChoice2, btnChoice3, btnChoice4, btnSettings;
+    private Button btnChoice1, btnChoice2, btnChoice3, btnChoice4;
+    private ImageButton btnSettings;
 
     private String correctAnswer;
     public int levelScore = 0;
@@ -33,105 +35,16 @@ public class Quiz extends AppCompatActivity {
 
     // Format >> {Question, Answer, Choice1, Choice 2, Choice 3}
     String quizData[][] = {
-            //Samples
             {"Which company did Valve cooperate with in the creation of the Vive?","HTC","Oculus","Google","Razer"},
             {"What does 360 degrees make?","Circle","Cube","Square","Tringale"},
             {"What's the name of Batman's parents?","Thomas & Martha","Joey & Jackie","Jason & Sarah","Todd & Mira"},
             {"What does a funambulist walk on?","A Tight Rope","Broken Glass","Balls","The Moon"},
-            {"What is the most sensitive","Smell","Touch","Sight","Hearing"},
+            {"Who is the Roman God of War?","Mars","Jupiter","Juno","Ares"},
             {"What is the largest organ of the human body?","Skin","Heart","large Intestine","Liver"},
             {"Which sign of the zodiac is represented by the Crab?","Cancer","Libra","Virgo","Sagittarius"},
             {"What does the 'S' stand for in the abbreviation SIM, as in SIM card?","Subscriber","Single","Secure","Solid"},
             {"Which American president appears on a one dollar bill?","George Washington","Thomas Jefferson","Abraham Lincoln","Benjamin Franklin"},
             {"What is Tasmania?","An Australian State","An ice-cream flavor","A disorder","A cartoon character"},
-
-            //Level 2 Questions
-            {"In past times, what would a gentleman keep in his fob pocket?","Watch","Money","Keys","Notebook"},
-            {"What is a group of bats called","Cauldron","Horde","Pace","Gaggle"},
-            {"Which sign of the zodiac comes between Virgo and Scorpio?","Libra","Leo","Gemini","Capricorn"},
-            {"What machine element is located in the center of fidget spinners?","","","",""},
-            {"What mythology did the god Apollo came from?","Greek and Roman","Norse and Spanish","Greek and Chinese","Norse and Greek"},
-            {"What is the more scientific name for quicksilver","Mercury","Cadmium","Lead","Bromine"},
-            {"What is the smallest country in the world?","Vatican City","Maldives","Monaco","Malta"},
-            {"How long does it take for Earth to travel around the Sun?","1 Year","4 days","10 weeks","12 minutes"},
-            {"How many vowels are in the word beautify?","4","5","3","7"},
-            {"What is the fastest-running terrestrial animal?","Cheetah","Lion","Man","Jaguar"},
-            {"What’s the best drink for your body?","Water","Coffee","Tea","Energy Drink"},
-            {"Which country’s flag is commonly referred to as the “Rising Sun”?","Japan","Vietnam","Korea","China"},
-            {"The “Mona Lisa” is an example of what kind of art technique?","Oil Painting","Acrylic Painting","Casein Painting","Panel Painting"},
-            {"Which of the following words means “not tight”?","Loose","Lose","Roose","Host"},
-            {"Which company was established on April 1st, 1976 by Steve Jobs, Steve Wozniak and Ronald Wayne?","Apple","Microsoft","Atari","Commodore"},
-            {"What is a male goose called","Gander","Rooster","Gobbler","Drake"},
-            {"Who was the Greek equivalent of the Roman god Cupid","Eros","Artemis","Janus","Tyche"},
-            {"What is the largest animal currently on Earth?","Blue Whale","Orca","Colossal Squid","Giraffe"},
-            {"On Twitter, what is the character limit for a Tweet?","140","120","100","110"},
-            {"The body of the Egyptian Sphinx was based on which animal?","Lion","Bull","Horse","Dog"},
-
-            //Level 3 Questions
-            {"Galileo discovered how many moons of Jupiter?","4","9","2","15"},
-            {"What is the capital of Canada?","Ottawa","Toronto","Vancouver","Victoria"},
-            {"What is the middle region of an insect called?","Thorax","Head","Abdomen","Wings"},
-            {"The body of the Egyptian Sphinx was based on which animal?","Lion","Bull","Horse","Dog"},
-            {"Which of these mammals lay eggs?","Platypus","Antelope","Beavers","Tarsier"},
-            {"What are the plastic bits at the end of shoelaces called?","Aglet","Sole","Seam","Vamp"},
-            {"Which US state has the highest population?","California","New York","Texas","Florida"},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-
-            //Level 4 Questions
-            {"Which of these countries has an element named after it?","Poland","Greece","Philippines","Japan"},
-            {"Oneirophobia is the fear of?","Dreams","Truth","Light","Sleeping"},
-            {"Pollination by birds is called","Ornithophily","Autogamy","Entomophily","Anemophily"},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-
-            //Level 5 Questions
-            {"How many Apollo missions landed men on the moon?","Six","Two","Five","Nine"},
-            {"When was youtube founded","February 14, 2005","May 22, 2004","September 12, 2002","July 19, 2009"},
-            {"Which of the following chemicals are found in eggplant seeds?","Nicotine","Mescaline","Cyanide","Psilocybin"},
-            {"Sciophobia is the fear of what?","Shadows","Eating","Bright lights","Transportation"},
-            {"What do you call someone who collects matchbooks?","Phillumenist","Clavichordist","Thanatologist","Funambulist"},
-            {"The Leaning Tower of Pisa leans in what direction?","South","North","West","East"},
-            {"What is the capital of Australia?","Canberra","Sydney","Melbourne","Brisbane"},
-            {"Melanite is a deep-black variety of what gemstone?","Garnet","Amethyst","Pearl","Peridot"},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
-            {"","","","",""},
     };
 
     private int questionCount = 10;
@@ -150,6 +63,7 @@ public class Quiz extends AppCompatActivity {
         textScore = findViewById(R.id.textScore);
         textLife = findViewById(R.id.textLife);
 
+        btnSettings = findViewById(R.id.btnSettings);
         btnChoice1 = findViewById(R.id.btnChoice1);
         btnChoice2 = findViewById(R.id.btnChoice2);
         btnChoice3 = findViewById(R.id.btnChoice3);
@@ -157,6 +71,13 @@ public class Quiz extends AppCompatActivity {
 
         String showLevel = "Level " + level;
         textLevel.setText(showLevel);
+
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                quizSettings();
+            }
+        });
 
         for (int i = 0; i < quizData.length; i++) {
 
@@ -286,8 +207,48 @@ public class Quiz extends AppCompatActivity {
     }
 
     @Override
-    public  void onBackPressed() {
-        //Show Settings
+    public void onBackPressed() {
+        quizSettings();
+    }
+
+    public void quizSettings() {
+        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView = getLayoutInflater().inflate(R.layout.activity_quiz_settings, null);
+        Button btnResume = mView.findViewById(R.id.btnResume);
+        Button btnLevel = mView.findViewById(R.id.btnLevel);
+        Button btnExit = mView.findViewById(R.id.btnExit);
+
+        btnLevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent selectLevel = new Intent(getApplicationContext(), LevelSelect.class);
+                selectLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(selectLevel);
+            }
+        });
+
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("Exit me", true);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        mBuilder.setView(mView);
+        final AlertDialog dialog = mBuilder.create();
+
+        btnResume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     public void vibration() {
@@ -296,6 +257,7 @@ public class Quiz extends AppCompatActivity {
         v.vibrate(200);
     }
 
+}
 
     /* TODO
     * Database
@@ -303,9 +265,5 @@ public class Quiz extends AppCompatActivity {
     * Back button + Menu
     * Designs
     * Landscape? Design
-    * Actual Questions
     * Sound effects. Maybe
     * -- Before final week of January -- */
-
-
-}

@@ -3,10 +3,10 @@ package ict405.group1.wtfacts;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class Quiz2 extends AppCompatActivity {
+public class Quiz4 extends AppCompatActivity {
 
     private userData user = new userData();
 
@@ -35,26 +35,26 @@ public class Quiz2 extends AppCompatActivity {
 
     // Format >> {Question, Answer, Choice1, Choice 2, Choice 3}
     String quizData[][] = {
-            {"In past times, what would a gentleman keep in his fob pocket?","Watch","Money","Keys","Notebook"},
-            {"What is a group of bats called?","Cauldron","Horde","Pace","Gaggle"},
-            {"Hippocampus is the Latin name for which marine creature?","Seahorse","Dolphin","Whale","Octopus"},
-            {"Alzheimer's disease primarily affects which part of the human body?","Brain","Lungs","Skin","Heart"},
-            {"What mythology did the god Apollo came from?","Greek and Roman","Norse and Spanish","Greek and Chinese","Norse and Greek"},
-            {"What is the more scientific name for quicksilver?","Mercury","Cadmium","Lead","Bromine"},
-            {"What is the smallest country in the world?","Vatican City","Maldives","Monaco","Malta"},
-            {"How long does it take for Earth to travel around the Sun?","1 Year","4 days","10 weeks","12 minutes"},
-            {"How many vowels are in the word beautify?","4","5","3","7"},
-            {"What is the fastest-running terrestrial animal?","Cheetah","Lion","Man","Jaguar"},
-            {"What’s the best drink for your body?","Water","Coffee","Tea","Energy Drink"},
-            {"Which country’s flag is commonly referred to as the “Rising Sun”?","Japan","Vietnam","Korea","China"},
-            {"The “Mona Lisa” is an example of what kind of art technique?","Oil Painting","Acrylic Painting","Casein Painting","Panel Painting"},
-            {"Which of the following words means “not tight”?","Loose","Lose","Roose","Host"},
-            {"Which of these elements on the Periodic Table is a Noble Gas?","Neon","Potassium","Iodine","Colbalt"},
-            {"What is a male goose called","Gander","Rooster","Gobbler","Drake"},
-            {"Who was the Greek equivalent of the Roman god Cupid?","Eros","Artemis","Janus","Tyche"},
-            {"What is the largest animal currently on Earth?","Blue Whale","Orca","Colossal Squid","Giraffe"},
-            {"On Twitter, what is the character limit for a Tweet?","140","120","100","110"},
-            {"The body of the Egyptian Sphinx was based on which animal?","Lion","Bull","Horse","Dog"},
+            {"Which of these countries has an element named after it?","Poland","Greece","Philippines","Japan"},
+            {"Oneirophobia is the fear of?","Dreams","Truth","Light","Sleeping"},
+            {"Pollination by birds is called","Ornithophily","Autogamy","Entomophily","Anemophily"},
+            {"Along with Oxygen, which element is primarily responsible for the sky appearing blue?","Nitrogen","Helium","Carbon","Hydrogen"},
+            {"What is radiation measured in?","Gray","Watt","Decibel","Kelvin"},
+            {"What is the largest living organism currently known to man?","Honey Fungus","Blue Whale","Redwood Tree","The Coral Reef"},
+            {"According to the Egyptian Myth of Osiris, who murdered Osiris?","Set","Horus","Ra","Anhur"},
+            {"What mythical creature has the front of an eagle and back of a horse?","Hippogriff","Longma","Griffon","Chimera"},
+            {"In Greek Mythology, who killed Achilles?","Paris","Hector","Helen","Pericles"},
+            {"What is the only country in the world with a flag that doesn't have four right angles?","Nepal","Panama","Angola","Egypt"},
+            {"How many counties in the Republic of Ireland?","26","32","28","30"},
+            {"Which is the largest city in Morocco?","Casablanca","Rabat","Fes","Sale"},
+            {"what does a nucivorous animal eat?","Nuts","Raisins","Fruit","Seaweed"},
+            {"What is the scientific name for the Polar Bear?","Ursus Maritimus","Ursa Meincansur","Ursus Spelaeus","Ursus Arctos"},
+            {"For what reason would a spotted hyena laugh?","Nervousness","Excitement","Aggression","Exhaustion"},
+            {"The now extinct species Thylacine was native to where?","Australia","Pakistan","Romania","United States"},
+            {"What is the novelist, Marry Shelly, credited for?","Frankenstein's monster","Dracula","The Thing","The Invisible Man"},
+            {"According to The Hitchhiker's Guide to the Galaxy book, the answer to life, the universe and everything else is...","42","Loving everyone around you","Chocolate","Death"},
+            {"In SpongeBob SquarePants, what is the name of Sandy Cheek's place of residence?","Treedome","Sacred Gear","Texas","Glass Dome"},
+            {"Which Japanese company is the world's largest manufacturer of motorcycles?","Honda","Yamaha","Suzuki","Kawasaki"},
     };
 
     private int questionCount = 10;
@@ -142,7 +142,7 @@ public class Quiz2 extends AppCompatActivity {
         gameOver.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Intent chooseLevel = new Intent(getApplicationContext(), Quiz2.class);
+                Intent chooseLevel = new Intent(getApplicationContext(), Quiz4.class);
                 chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(chooseLevel);
             }

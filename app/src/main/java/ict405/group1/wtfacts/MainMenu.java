@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class MainMenu extends AppCompatActivity {
 
@@ -34,16 +35,32 @@ public class MainMenu extends AppCompatActivity {
             }
         });
 
+        btnOptions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("Exit me", true);
-                startActivity(intent);
-                finish();
+                exitApp();
             }
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        exitApp();
+    }
+
+    public void exitApp() {
+        Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("Exit me", true);
+        startActivity(intent);
+        finish();
+    }
+
 }

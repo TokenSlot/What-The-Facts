@@ -3,10 +3,10 @@ package ict405.group1.wtfacts;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class Quiz2 extends AppCompatActivity {
+public class Quiz5 extends AppCompatActivity {
 
     private userData user = new userData();
 
@@ -35,26 +35,26 @@ public class Quiz2 extends AppCompatActivity {
 
     // Format >> {Question, Answer, Choice1, Choice 2, Choice 3}
     String quizData[][] = {
-            {"In past times, what would a gentleman keep in his fob pocket?","Watch","Money","Keys","Notebook"},
-            {"What is a group of bats called?","Cauldron","Horde","Pace","Gaggle"},
-            {"Hippocampus is the Latin name for which marine creature?","Seahorse","Dolphin","Whale","Octopus"},
-            {"Alzheimer's disease primarily affects which part of the human body?","Brain","Lungs","Skin","Heart"},
-            {"What mythology did the god Apollo came from?","Greek and Roman","Norse and Spanish","Greek and Chinese","Norse and Greek"},
-            {"What is the more scientific name for quicksilver?","Mercury","Cadmium","Lead","Bromine"},
-            {"What is the smallest country in the world?","Vatican City","Maldives","Monaco","Malta"},
-            {"How long does it take for Earth to travel around the Sun?","1 Year","4 days","10 weeks","12 minutes"},
-            {"How many vowels are in the word beautify?","4","5","3","7"},
-            {"What is the fastest-running terrestrial animal?","Cheetah","Lion","Man","Jaguar"},
-            {"What’s the best drink for your body?","Water","Coffee","Tea","Energy Drink"},
-            {"Which country’s flag is commonly referred to as the “Rising Sun”?","Japan","Vietnam","Korea","China"},
-            {"The “Mona Lisa” is an example of what kind of art technique?","Oil Painting","Acrylic Painting","Casein Painting","Panel Painting"},
-            {"Which of the following words means “not tight”?","Loose","Lose","Roose","Host"},
-            {"Which of these elements on the Periodic Table is a Noble Gas?","Neon","Potassium","Iodine","Colbalt"},
-            {"What is a male goose called","Gander","Rooster","Gobbler","Drake"},
-            {"Who was the Greek equivalent of the Roman god Cupid?","Eros","Artemis","Janus","Tyche"},
-            {"What is the largest animal currently on Earth?","Blue Whale","Orca","Colossal Squid","Giraffe"},
-            {"On Twitter, what is the character limit for a Tweet?","140","120","100","110"},
-            {"The body of the Egyptian Sphinx was based on which animal?","Lion","Bull","Horse","Dog"},
+            {"How many Apollo missions landed men on the moon?","Six","Two","Five","Nine"},
+            {"When was youtube founded","February 14, 2005","May 22, 2004","September 12, 2002","July 19, 2009"},
+            {"Which of the following chemicals are found in eggplant seeds?","Nicotine","Mescaline","Cyanide","Psilocybin"},
+            {"Sciophobia is the fear of what?","Shadows","Eating","Bright lights","Transportation"},
+            {"What do you call someone who collects matchbooks?","Phillumenist","Clavichordist","Thanatologist","Funambulist"},
+            {"The Leaning Tower of Pisa leans in what direction?","South","North","West","East"},
+            {"What is the capital of Australia?","Canberra","Sydney","Melbourne","Brisbane"},
+            {"Melanite is a deep-black variety of what gemstone?","Garnet","Amethyst","Pearl","Peridot"},
+            {"Which is the chemical name of H2O?","Dihydrogen Monoxide","Ammonium chloride","Anhydrous Sodium Carbonate","Manganese dioxide"},
+            {"Which is not a type of neuron?","Perception Neuron","Sensory Neuron","Motor Neuron","Interneuron"},
+            {"Which of the following is NOT a real element?","Vitrainium","Praseodymium","Hassium","Lutetium"},
+            {"Who is the Egyptian god of reproduction and lettuce?","Min","Menu","Mut","Meret"},
+            {"Which of the following is NOT a god in Norse Mythology?","Jens","Loki","Tyr","Snotra"},
+            {"In Norse mythology, what is the name of the serpent which eats the roots of the ash tree Yggdrasil?","Nidhogg","Bragi","Shenron","Ymir"},
+            {"What type of creature is a Bonobo?","Ape","Lion","Parrot","Wildcat"},
+            {"Which species of Brown Bear is not extinct?","Syrian Brown Bear","California Grizzly Bear","Atlas Bear","Mexican Grizzly Bear"},
+            {"What is the Gray Wolf' scientific name?","Canis Lupus","Canis Aureus","Canis Latrans","Canis Lupus Lycaon"},
+            {"Which of these is NOT a city in India?","Islamabad","Hyderabad","Ahmedabad","Ghaziabad"},
+            {"Which is the largest freshwater lake in the world?","Lake Superior","Lake Laogai","Lake Michigan","Lake Huron"},
+            {"What is the name of rocky region that spans most of eastern Canada?","Canadian Shield","Rocky Mountains","Appalachian Mountains","Himalayas"},
     };
 
     private int questionCount = 10;
@@ -142,7 +142,7 @@ public class Quiz2 extends AppCompatActivity {
         gameOver.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Intent chooseLevel = new Intent(getApplicationContext(), Quiz2.class);
+                Intent chooseLevel = new Intent(getApplicationContext(), Quiz5.class);
                 chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(chooseLevel);
             }
