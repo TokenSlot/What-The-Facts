@@ -113,7 +113,6 @@ public class MainMenu extends AppCompatActivity {
 
 }
 
-
     /* TODO
     * Designs
     * Landscape? Design

@@ -193,8 +193,8 @@ public class Quiz5 extends AppCompatActivity {
         //When all questions are done
         done.setTitle("Result");
         done.setMessage("Correct Answers: " + levelScore + "/" + questionCount +
-                "\nRemaining Life: " + userLife + "(+" + (userLife * 5) + " score)" +
-                "\nScore: " + mScore );
+                        "\nRemaining Life: " + userLife + "(+" + (userLife * 5) + " score)" +
+                        "\nScore: " + mScore );
         done.setNegativeButton("Select Level", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
