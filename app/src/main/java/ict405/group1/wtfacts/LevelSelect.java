@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class LevelSelect extends AppCompatActivity {
@@ -17,6 +18,7 @@ public class LevelSelect extends AppCompatActivity {
     ImageButton btnHome;
     Integer countCorrect, countCorrect2, countCorrect3, countCorrect4, countCorrect5;
     Integer countScore, countScore2, countScore3, countScore4, countScore5;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,6 +131,7 @@ public class LevelSelect extends AppCompatActivity {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         View mView = getLayoutInflater().inflate(R.layout.activity_show_result, null);
 
+        ProgressBar progress_correct = mView.findViewById(R.id.progress_correct);
         TextView tv_level = mView.findViewById(R.id.tv_level);
         TextView tv_correct = mView.findViewById(R.id.tv_correct);
         TextView tv_highScore = mView.findViewById(R.id.tv_highScore);
@@ -143,6 +146,7 @@ public class LevelSelect extends AppCompatActivity {
         tv_level.setText(userLevel);
         tv_correct.setText(userCorrect);
         tv_highScore.setText(userScore);
+        progress_correct.setProgress(correct);
 
         btnGo.setOnClickListener(new View.OnClickListener() {
             @Override

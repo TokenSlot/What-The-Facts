@@ -11,22 +11,49 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Level 0"
-        android:gravity="center"/>
-
-    <TextView
-        android:id="@+id/tv_correct"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="0/0"
         android:gravity="center"
-        android:layout_marginBottom="10dp"
-        android:textSize="20sp"/>
+        android:textSize="18sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <ProgressBar
+            android:id="@+id/progress_correct"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indeterminate="false"
+            android:progressDrawable="@drawable/circular_progress_bar"
+            android:background="@drawable/circle_shape"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:max="10"
+            android:progress="4"/>
+
+        <TextView
+            android:id="@+id/tv_correct"
+            android:text="0/0"
+            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:gravity="center" />
+        
+    </RelativeLayout>
+    
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="High Score"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/tv_highScore"
@@ -34,8 +61,11 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:gravity="center"
-        android:layout_marginBottom="10dp"
-        android:textSize="20sp"/>
+        android:textSize="30sp"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,18 +77,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginRight="3dp"
-            android:layout_marginEnd="3dp"
             android:text="Cancel"
             android:background="@drawable/btndefault_bg"/>
+
+        <Space
+            android:layout_width="6dp"
+            android:layout_height="match_parent" />
 
         <Button
             android:id="@+id/btnGo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginLeft="3dp"
-            android:layout_marginStart="3dp"
             android:text="Start"
             android:background="@drawable/btngreen_bg"/>
 

@@ -123,6 +123,36 @@ public class Quiz2 extends AppCompatActivity {
         btnChoice4.setText(quiz.get(3));
         //Removes the question and its choices
         quizArray.remove(randomNum);
+
+        //Sets the background of the buttons
+        String choice1 = btnChoice1.getText().toString();
+        String choice2 = btnChoice2.getText().toString();
+        String choice3 = btnChoice3.getText().toString();
+        String choice4 = btnChoice4.getText().toString();
+
+        if (choice1.equals(correctAnswer)) {
+            btnChoice1.setBackgroundResource(R.drawable.btncorrect_bg);
+        } else {
+            btnChoice1.setBackgroundResource(R.drawable.btnwrong_bg);
+        }
+
+        if (choice2.equals(correctAnswer)) {
+            btnChoice2.setBackgroundResource(R.drawable.btncorrect_bg);
+        } else {
+            btnChoice2.setBackgroundResource(R.drawable.btnwrong_bg);
+        }
+
+        if (choice3.equals(correctAnswer)) {
+            btnChoice3.setBackgroundResource(R.drawable.btncorrect_bg);
+        } else {
+            btnChoice3.setBackgroundResource(R.drawable.btnwrong_bg);
+        }
+
+        if (choice4.equals(correctAnswer)) {
+            btnChoice4.setBackgroundResource(R.drawable.btncorrect_bg);
+        } else {
+            btnChoice4.setBackgroundResource(R.drawable.btnwrong_bg);
+        }
     }
 
     public void updateTextViews() {
@@ -134,27 +164,41 @@ public class Quiz2 extends AppCompatActivity {
         textScore.setText(showScore);
     }
 
-    public void checkAnswer(View view) {
+    public void checkAnswer(final View view) {
         Button answerBtn = findViewById(view.getId());
         String btnText = answerBtn.getText().toString();
-
-        //Adds score when the answer is correct
-        if (btnText.equals(correctAnswer)) {
-            levelScore = levelScore + 1;
-            mScore = mScore + 25;
-        }
 
         AlertDialog.Builder quizPrompt = new AlertDialog.Builder(this);
         AlertDialog.Builder gameOver = new AlertDialog.Builder(this);
         final AlertDialog.Builder done = new AlertDialog.Builder(this);
 
+        //Adds score when the answer is correct
+        if (btnText.equals(correctAnswer)) {
+            levelScore = levelScore + 1;
+            mScore = mScore + 25;
+            updateTextViews();
+        }
+
+        //Subtracts 5 from the score if answer is incorrect and the score isn't zero
+        if (mScore != 0 && !correctAnswer.equals(btnText)) {
+            mScore = mScore - 5;
+        }
+
+        //If all questions have been answered, all remaining life points are
+        // multiplied by 5 and will be added to the final score
+        if (levelScore == questionCount) {
+            mScore = mScore + (userLife * 5);
+        }
+
         //When all questions are done
         done.setTitle("Result");
-        done.setMessage("Score: " + mScore);
+        done.setMessage("Correct Answers: " + levelScore + "/" + questionCount +
+                "\nRemaining Life: " + userLife + "(+" + (userLife * 5) + " score)" +
+                "\nScore: " + mScore );
         done.setNegativeButton("Select Level", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                giffScore(levelScore, mScore);
+                giffScore(levelScore, mScore );
                 Intent selectLevel = new Intent(getApplicationContext(), LevelSelect.class);
                 selectLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(selectLevel);
@@ -166,7 +210,7 @@ public class Quiz2 extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 giffScore(levelScore, mScore);
                 Intent selectLevel = new Intent(getApplicationContext(), Quiz3.class);
-                selectLevel.putExtra("quizLvl", 2);
+                selectLevel.putExtra("quizLvl", 3);
                 selectLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(selectLevel);
             }
@@ -175,7 +219,6 @@ public class Quiz2 extends AppCompatActivity {
 
         //When the user fails to answer the question
         gameOver.setTitle("Game Over...");
-
         gameOver.setMessage("Answer: " + correctAnswer +
                 "\nCorrect Answers: " + levelScore + "/" + questionCount +
                 "\nScore: " + mScore +
@@ -194,7 +237,7 @@ public class Quiz2 extends AppCompatActivity {
         gameOver.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                giffScore(levelScore, mScore);
+                giffScore(levelScore, mScore );
                 Intent mainMenu = new Intent(getApplicationContext(), MainMenu.class);
                 mainMenu.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(mainMenu);
@@ -214,7 +257,6 @@ public class Quiz2 extends AppCompatActivity {
                     questionNum++;
                     showNextQuiz();
                 }
-                updateTextViews();
             }
         });
         quizPrompt.setCancelable(false);
@@ -222,10 +264,8 @@ public class Quiz2 extends AppCompatActivity {
         //Checks if the answer is wrong else correct dialog will appear
         if (!correctAnswer.equals(btnText) && userLife != 0) {
             userLife = userLife - 1;
-            Toast rong = new Toast(this);
-            rong.makeText(getApplicationContext(), "Wrong!", Toast.LENGTH_LONG).show();
-            updateTextViews();
             vibration();
+            updateTextViews();
             //When userLife reaches 0 when subtracted by 1, game over dialog will appear
             if (userLife == 0) {
                 gameOver.show();
@@ -233,17 +273,22 @@ public class Quiz2 extends AppCompatActivity {
         } else {
             quizPrompt.show();
         }
+
     }
 
     public void giffScore(int correctAnswers,int score) {
-        saveScore(score);
-        saveLevelScore(correctAnswers);
+        if (getCorrectAnswer() < correctAnswers) {
+            saveLevelScore(correctAnswers);
+        }
+        if (getUserScore() < score) {
+            saveScore(score);
+        }
     }
 
     public void saveScore(int score) {
         SharedPreferences mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();
-        mEditor.putInt("userScore4", score);
+        mEditor.putInt("userScore2", score);
         mEditor.apply();
     }
 

@@ -57,15 +57,7 @@ public class MainMenu extends AppCompatActivity {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         View mView = getLayoutInflater().inflate(R.layout.activity_menu_settings, null);
         Button btnBack = mView.findViewById(R.id.btnBack);
-        Button btnView = mView.findViewById(R.id.btnView);
         Button btnReset = mView.findViewById(R.id.btnReset);
-
-        btnView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Work in Progress", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,3 +112,9 @@ public class MainMenu extends AppCompatActivity {
     }
 
 }
+
+
+    /* TODO
+    * Designs
+    * Landscape? Design
+    * Sound effects. Maybe */
