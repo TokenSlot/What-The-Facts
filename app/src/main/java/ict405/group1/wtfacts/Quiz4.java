@@ -236,10 +236,8 @@ public class Quiz4 extends AppCompatActivity {
     }
 
     public void giffScore(int correctAnswers,int score) {
-        if (levelScore >= 7) {
-            saveScore(score);
-            saveLevelScore(correctAnswers);
-        }
+        saveScore(score);
+        saveLevelScore(correctAnswers);
     }
 
     public void saveScore(int score) {
