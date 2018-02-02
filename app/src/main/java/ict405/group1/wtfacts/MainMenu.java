@@ -1,7 +1,9 @@
 package ict405.group1.wtfacts;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +40,7 @@ public class MainMenu extends AppCompatActivity {
         btnOptions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                menuSettings();
             }
         });
 
@@ -48,6 +51,59 @@ public class MainMenu extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void menuSettings() {
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView = getLayoutInflater().inflate(R.layout.activity_menu_settings, null);
+        Button btnBack = mView.findViewById(R.id.btnBack);
+        Button btnView = mView.findViewById(R.id.btnView);
+        Button btnReset = mView.findViewById(R.id.btnReset);
+
+        btnView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Work in Progress", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resetData();
+                Toast.makeText(getApplicationContext(), "Data has been reset", Toast.LENGTH_SHORT).show();
+            }
+        });
+        mBuilder.setView(mView);
+        final AlertDialog dialog = mBuilder.create();
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+    public void resetData() {
+        SharedPreferences mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+
+        mEditor.putInt("userScore", 0);
+        mEditor.putInt("correctAns", 0);
+
+        mEditor.putInt("userScore2", 0);
+        mEditor.putInt("correctAns2", 0);
+
+        mEditor.putInt("userScore3", 0);
+        mEditor.putInt("correctAns3", 0);
+
+        mEditor.putInt("userScore4", 0);
+        mEditor.putInt("correctAns4", 0);
+
+        mEditor.putInt("userScore5", 0);
+        mEditor.putInt("correctAns5", 0);
+        mEditor.apply();
     }
 
     @Override

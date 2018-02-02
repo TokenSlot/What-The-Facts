@@ -3,10 +3,11 @@ package ict405.group1.wtfacts;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
+import android.content.SharedPreferences;
 import android.os.Vibrator;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -19,7 +20,6 @@ import java.util.Random;
 
 public class Quiz3 extends AppCompatActivity {
 
-    private userData user = new userData();
 
     private TextView textLevel, textQuestions, textQuestionNum, textScore, textLife;
     private Button btnChoice1, btnChoice2, btnChoice3, btnChoice4;
@@ -29,7 +29,7 @@ public class Quiz3 extends AppCompatActivity {
     public int levelScore = 0;
     private int questionNum = 1;
     private int userLife = 3;
-    private int mScore = user.Score;
+    private int mScore = 0;
 
     ArrayList<ArrayList<String>> quizArray = new ArrayList<>();
 
@@ -134,30 +134,6 @@ public class Quiz3 extends AppCompatActivity {
         textScore.setText(showScore);
     }
 
-    public void gameOver() {
-        AlertDialog.Builder gameOver = new AlertDialog.Builder(this);
-        gameOver.setTitle("Game Over...");
-        gameOver.setMessage("Try again?");
-        gameOver.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent chooseLevel = new Intent(getApplicationContext(), Quiz3.class);
-                chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(chooseLevel);
-            }
-        });
-        gameOver.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent mainMenu = new Intent(getApplicationContext(), MainMenu.class);
-                mainMenu.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(mainMenu);
-            }
-        });
-        gameOver.setCancelable(false);
-        gameOver.show();
-    }
-
     public void checkAnswer(View view) {
         Button answerBtn = findViewById(view.getId());
         String btnText = answerBtn.getText().toString();
@@ -169,20 +145,64 @@ public class Quiz3 extends AppCompatActivity {
         }
 
         AlertDialog.Builder quizPrompt = new AlertDialog.Builder(this);
+        AlertDialog.Builder gameOver = new AlertDialog.Builder(this);
         final AlertDialog.Builder done = new AlertDialog.Builder(this);
 
+        //When all questions are done
         done.setTitle("Result");
         done.setMessage("Score: " + mScore);
-        done.setNeutralButton("Back to Menu", new DialogInterface.OnClickListener() {
+        done.setNegativeButton("Select Level", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                giffScore(levelScore, mScore);
                 Intent selectLevel = new Intent(getApplicationContext(), LevelSelect.class);
+                selectLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(selectLevel);
+            }
+        });
+
+        done.setPositiveButton("Next Level", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                giffScore(levelScore, mScore);
+                Intent selectLevel = new Intent(getApplicationContext(), Quiz4.class);
+                selectLevel.putExtra("quizLvl", 4);
                 selectLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(selectLevel);
             }
         });
         done.setCancelable(false);
 
+        //When the user fails to answer the question
+        gameOver.setTitle("Game Over...");
+
+        gameOver.setMessage("Answer: " + correctAnswer +
+                "\nCorrect Answers: " + levelScore + "/" + questionCount +
+                "\nScore: " + mScore +
+                "\n\n Try Again?");
+
+        gameOver.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                giffScore(levelScore, mScore);
+                Intent chooseLevel = new Intent(getApplicationContext(), Quiz3.class);
+                chooseLevel.putExtra("quizLvl", 3);
+                chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(chooseLevel);
+            }
+        });
+        gameOver.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                giffScore(levelScore, mScore);
+                Intent mainMenu = new Intent(getApplicationContext(), MainMenu.class);
+                mainMenu.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(mainMenu);
+            }
+        });
+        gameOver.setCancelable(false);
+
+        //When the answer is correct
         quizPrompt.setTitle("Correct!");
         quizPrompt.setMessage("Answer: " + correctAnswer);
         quizPrompt.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -203,17 +223,49 @@ public class Quiz3 extends AppCompatActivity {
         if (!correctAnswer.equals(btnText) && userLife != 0) {
             userLife = userLife - 1;
             Toast rong = new Toast(this);
-            rong.makeText(getApplicationContext(), "Wrong!", Toast.LENGTH_SHORT).show();
+            rong.makeText(getApplicationContext(), "Wrong!", Toast.LENGTH_LONG).show();
             updateTextViews();
             vibration();
             //When userLife reaches 0 when subtracted by 1, game over dialog will appear
             if (userLife == 0) {
-                gameOver();
+                gameOver.show();
             }
         } else {
             quizPrompt.show();
         }
     }
+
+    public void giffScore(int correctAnswers,int score) {
+        if (levelScore >= 7) {
+            saveScore(score);
+            saveLevelScore(correctAnswers);
+        }
+    }
+
+    public void saveScore(int score) {
+        SharedPreferences mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putInt("userScore3", score);
+        mEditor.apply();
+    }
+
+    public void saveLevelScore(int correctAnswers) {
+        SharedPreferences mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putInt("correctAns3", correctAnswers);
+        mEditor.apply();
+    }
+
+    public int getCorrectAnswer() {
+        SharedPreferences mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        return mSharedPreferences.getInt("correctAns3", 0);
+    }
+
+    public int getUserScore() {
+        SharedPreferences mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        return mSharedPreferences.getInt("userScore3", 0);
+    }
+
 
     @Override
     public void onBackPressed() {

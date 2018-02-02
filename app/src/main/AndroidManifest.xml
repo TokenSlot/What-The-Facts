@@ -40,9 +40,26 @@
                 android:value=".LevelSelect" />
         </activity>
         <activity
-            android:name=".Exit"
-            android:label="@string/title_activity_exit"
-            android:theme="@style/AppTheme" />
+            android:name=".Quiz3"
+            android:parentActivityName=".LevelSelect">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LevelSelect" />
+        </activity>
+        <activity
+            android:name=".Quiz4"
+            android:parentActivityName=".LevelSelect">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LevelSelect" />
+        </activity>
+        <activity
+            android:name=".Quiz5"
+            android:parentActivityName=".LevelSelect">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LevelSelect" />
+        </activity>
     </application>
 
 </manifest>
