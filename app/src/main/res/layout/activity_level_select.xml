@@ -5,10 +5,12 @@
     android:id="@+id/container_grid"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:orientation="horizontal">
+    app:orientation="horizontal"
+    android:background="@drawable/bg3">
 
     <Button
         android:id="@+id/button_lvl1"
+        android:background="@drawable/btndefault_bg"
         android:text="1"
         android:textSize="30sp"
         android:padding="0dp"
@@ -17,10 +19,12 @@
         android:gravity="center"
         app:layout_row="0"
         app:layout_column="0"
+        android:layout_margin="3dp"
         />
 
     <Button
         android:id="@+id/button_lvl2"
+        android:background="@drawable/btndefault_bg"
         android:text="LOCKED"
         android:padding="0dp"
         android:textSize="12sp"
@@ -29,10 +33,12 @@
         android:gravity="center"
         app:layout_row="0"
         app:layout_column="1"
+        android:layout_margin="3dp"
         />
 
     <Button
         android:id="@+id/button_lvl3"
+        android:background="@drawable/btndefault_bg"
         android:text="LOCKED"
         android:padding="0dp"
         android:textSize="12sp"
@@ -41,10 +47,12 @@
         android:gravity="center"
         app:layout_row="0"
         app:layout_column="2"
+        android:layout_margin="3dp"
         />
 
     <Button
         android:id="@+id/button_lvl4"
+        android:background="@drawable/btndefault_bg"
         android:text="LOCKED"
         android:padding="0dp"
         android:textSize="12sp"
@@ -53,10 +61,12 @@
         android:gravity="center"
         app:layout_row="1"
         app:layout_column="0"
+        android:layout_margin="3dp"
         />
 
     <Button
         android:id="@+id/button_lvl5"
+        android:background="@drawable/btndefault_bg"
         android:text="LOCKED"
         android:padding="0dp"
         android:textSize="12sp"
@@ -65,10 +75,12 @@
         android:gravity="center"
         app:layout_row="1"
         app:layout_column="1"
+        android:layout_margin="3dp"
         />
 
     <ImageButton
         android:id="@+id/button_home"
+        android:background="@drawable/btndefault_bg"
         android:src="@drawable/home_icon"
         app:layout_columnWeight="1"
         android:padding="0dp"
@@ -76,6 +88,7 @@
         android:gravity="center"
         app:layout_row="1"
         app:layout_column="2"
+        android:layout_margin="3dp"
         />
 
 </android.support.v7.widget.GridLayout>

@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:ignore="HardcodedText"
-    tools:context="ict405.group1.wtfacts.Quiz">
+    tools:context="ict405.group1.wtfacts.Quiz"
+    android:background="@drawable/bg2">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@color/colorDarkSpringGreen"
-        android:padding="6dp">
+        android:background="@color/colorDarkSpringGreen">
 
         <TextView
             android:id="@+id/textLevel"
@@ -23,18 +23,20 @@
             android:layout_alignParentTop="true"
             android:text="Level"
             android:textColor="@android:color/white"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:layout_margin="6dp"/>
 
         <ImageButton
             android:id="@+id/btnSettings"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:background="@drawable/btngreen_bg"
+            android:background="@drawable/btngreen2_bg"
             android:contentDescription="Settings"
-            android:padding="10dp"
-            android:src="@drawable/ic_settings" />
+            android:src="@drawable/ic_settings"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"/>
 
     </RelativeLayout>
 
@@ -52,6 +54,7 @@
 
         <TextView
             android:id="@+id/textScore"
+            android:textColor="@android:color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -74,6 +77,7 @@
 
         <TextView
             android:id="@+id/textLife"
+            android:textColor="@android:color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -87,11 +91,14 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
+        android:layout_margin="6dp"
         android:padding="6dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:background="@drawable/bg_white">
 
         <TextView
             android:id="@+id/textQuestion"
+            android:textColor="@android:color/black"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -116,7 +123,7 @@
             android:id="@+id/btnChoice1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/btndefault_bg"
+            android:background="@drawable/button_choice1"
             android:onClick="checkAnswer"
             android:text="CHOICE 1" />
 
@@ -128,7 +135,7 @@
             android:id="@+id/btnChoice2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/btndefault_bg"
+            android:background="@drawable/button_choice2"
             android:onClick="checkAnswer"
             android:text="CHOICE 2" />
 
@@ -140,7 +147,7 @@
             android:id="@+id/btnChoice3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/btndefault_bg"
+            android:background="@drawable/button_choice3"
             android:onClick="checkAnswer"
             android:text="CHOICE 3" />
 
@@ -152,7 +159,7 @@
             android:id="@+id/btnChoice4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/btndefault_bg"
+            android:background="@drawable/button_choice4"
             android:onClick="checkAnswer"
             android:text="CHOICE 4" />
 

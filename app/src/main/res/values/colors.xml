@@ -7,4 +7,19 @@
     <color name="colorForestGreen">#2A9134</color>
     <color name="colorGreen">#06BD49</color>
     <color name="colorDarkGreen">#035E24</color>
+
+    <color name="colorChoice1">#E88A66</color>
+    <color name="colorSelect1">#B26A4F</color>
+
+    <color name="colorChoice2">#D0A5C0</color>
+    <color name="colorSelect2">#9F7F94</color>
+
+    <color name="colorChoice3">#CACF85</color>
+    <color name="colorSelect3">#9C9F66</color>
+
+    <color name="colorChoice4">#9EA3B0</color>
+    <color name="colorSelect4">#797D88</color>
+
+    <color name="colorOptions">#6874E8</color>
+
 </resources>

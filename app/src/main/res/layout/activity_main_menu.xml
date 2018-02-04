@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="ict405.group1.wtfacts.MainMenu">
+    tools:context="ict405.group1.wtfacts.MainMenu"
+    android:background="@drawable/bg_menu">
 
     <ImageView
         android:layout_marginTop="15dp"
