@@ -16,12 +16,34 @@
         android:layout_width="match_parent"
         android:layout_height="6dp" />
 
+    <Switch
+        android:id="@+id/vibration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vibration On"
+        android:textSize="18sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="6dp" />
+
+    <Button
+        android:id="@+id/btnAbout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btndefault_bg"
+        android:text="Credits" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="6dp" />
+
     <Button
         android:id="@+id/btnBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/btndefault_bg"
-        android:text="Back" />
+        android:text="Close" />
 
     <Space
         android:layout_width="match_parent"

@@ -215,7 +215,7 @@ public class Quiz3 extends AppCompatActivity {
                     showNextQuiz();
                 }
                 updateTextViews();
-                dialog.cancel();
+                dialog.dismiss();
             }
         });
     }
@@ -252,7 +252,7 @@ public class Quiz3 extends AppCompatActivity {
                 chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 chooseLevel.putExtra("quizLvl", level);
                 startActivity(chooseLevel);
-                dialog.cancel();
+                dialog.dismiss();
             }
         });
 
@@ -262,7 +262,7 @@ public class Quiz3 extends AppCompatActivity {
                 Intent chooseLevel = new Intent(getApplicationContext(), MainMenu.class);
                 chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(chooseLevel);
-                dialog.cancel();
+                dialog.dismiss();
             }
         });
     }
@@ -299,7 +299,7 @@ public class Quiz3 extends AppCompatActivity {
                 chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 chooseLevel.putExtra("quizLvl", level);
                 startActivity(chooseLevel);
-                dialog.cancel();
+                dialog.dismiss();
             }
         });
 
@@ -309,7 +309,7 @@ public class Quiz3 extends AppCompatActivity {
                 Intent chooseLevel = new Intent(getApplicationContext(), LevelSelect.class);
                 chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(chooseLevel);
-                dialog.cancel();
+                dialog.dismiss();
             }
         });
     }

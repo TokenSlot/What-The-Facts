@@ -132,10 +132,23 @@ public class Quiz extends AppCompatActivity {
         giffScore(levelScore, mScore);
     }
 
+    public boolean getVibBool() {
+        SharedPreferences mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        return mSharedPreferences.getBoolean("vibrate",  true);
+    }
+
+    public void vibration() {
+        if (getVibBool()) {
+            Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            v.vibrate(200);
+        }
+    }
 
     public void checkAnswer(View view) {
         Button answerBtn = findViewById(view.getId());
         String btnText = answerBtn.getText().toString();
+
+
 
         //Adds score when the answer is correct
         if (btnText.equals(correctAnswer)) {
@@ -203,7 +216,7 @@ public class Quiz extends AppCompatActivity {
                     showNextQuiz();
                 }
                 updateTextViews();
-                dialog.cancel();
+                dialog.dismiss();
             }
         });
     }
@@ -240,7 +253,7 @@ public class Quiz extends AppCompatActivity {
                 chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 chooseLevel.putExtra("quizLvl", level);
                 startActivity(chooseLevel);
-                dialog.cancel();
+                dialog.dismiss();
             }
         });
 
@@ -250,7 +263,7 @@ public class Quiz extends AppCompatActivity {
                 Intent chooseLevel = new Intent(getApplicationContext(), MainMenu.class);
                 chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(chooseLevel);
-                dialog.cancel();
+                dialog.dismiss();
             }
         });
     }
@@ -287,7 +300,7 @@ public class Quiz extends AppCompatActivity {
                 chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 chooseLevel.putExtra("quizLvl", level);
                 startActivity(chooseLevel);
-                dialog.cancel();
+                dialog.dismiss();
             }
         });
 
@@ -297,7 +310,7 @@ public class Quiz extends AppCompatActivity {
                 Intent chooseLevel = new Intent(getApplicationContext(), LevelSelect.class);
                 chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(chooseLevel);
-                dialog.cancel();
+                dialog.dismiss();
             }
         });
     }
@@ -396,12 +409,6 @@ public class Quiz extends AppCompatActivity {
         });
 
         dialog.show();
-    }
-
-    public void vibration() {
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        // Vibrate for 500 milliseconds
-        v.vibrate(200);
     }
 
 }

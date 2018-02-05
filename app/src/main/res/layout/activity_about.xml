@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <TextView
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Credits"
+        android:textSize="30sp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Developed by STI College Fairview Students"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="A.Y. 2017-2018"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="6dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Development Team"/>
+
+    <TextView
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Abian, Al"
+        android:textSize="18sp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Amado, Mark Ian"
+        android:textSize="18sp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bantoy, Edward"
+        android:textSize="18sp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cerbo, Cheska"
+        android:textSize="18sp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lucaten, Jericho"
+        android:textSize="18sp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pabilona, Kristina"
+        android:textSize="18sp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Paltera, Roman Jr."
+        android:textSize="18sp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pasaporte, Mitcel Hannah"
+        android:textSize="18sp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salaño, Nico"
+        android:textSize="18sp"
+        android:layout_gravity="center" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="6dp" />
+
+    <Button
+        android:id="@+id/closeAbout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:background="@drawable/btndefault_bg"/>
+
+</LinearLayout>
