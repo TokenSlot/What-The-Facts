@@ -366,6 +366,8 @@ public class Quiz extends AppCompatActivity {
         return mSharedPreferences.getInt("userScore", 0);
     }
 
+
+
     @Override
     public void onBackPressed() {
         quizSettings();

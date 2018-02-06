@@ -278,6 +278,10 @@ public class Quiz5 extends AppCompatActivity {
         TextView text_score = mView.findViewById(R.id.text_score);
         TextView text_finalScore = mView.findViewById(R.id.text_finalScore);
 
+        button_select.setVisibility(View.GONE);
+
+        button_next.setText("Done");
+
         Integer scoring = score - (userLife * 5);
         String userScore = scoring.toString();
         String finalScore = score.toString();
@@ -295,11 +299,7 @@ public class Quiz5 extends AppCompatActivity {
         button_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent chooseLevel = new Intent(getApplicationContext(), myClass);
-                chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                chooseLevel.putExtra("quizLvl", level);
-                startActivity(chooseLevel);
-                dialog.dismiss();
+            congratsDialog();
             }
         });
 
@@ -312,6 +312,28 @@ public class Quiz5 extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+    }
+
+    public void congratsDialog() {
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView = getLayoutInflater().inflate(R.layout.activity_congrats, null);
+        Button btnCongrats = mView.findViewById(R.id.btnCongrats);
+
+        mBuilder.setView(mView);
+        final AlertDialog dialog = mBuilder.create();
+        dialog.show();
+        dialog.setCancelable(false);
+
+        btnCongrats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent chooseLevel = new Intent(getApplicationContext(), MainMenu.class);
+                chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(chooseLevel);
+                dialog.dismiss();
+            }
+        });
+
     }
 
     public void getColorButton(final View view) {

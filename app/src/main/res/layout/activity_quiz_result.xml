@@ -123,11 +123,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Select Level"
+        android:layout_margin="6dp"
         android:background="@drawable/btndefault_bg"/>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="6dp" />
 
     <Button
         android:id="@+id/button_next"
