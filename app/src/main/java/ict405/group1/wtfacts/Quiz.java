@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,11 +29,12 @@ import java.util.TimerTask;
 
 public class Quiz extends AppCompatActivity {
 
-    private TextView textLevel, textQuestions, textQuestionNum, textScore, textLife;
-    private Button btnChoice1, btnChoice2, btnChoice3, btnChoice4;
+    private TextView textLevel, textQuestions, textQuestionNum, textScore;
+    private Button btnChoice1, btnChoice2, btnChoice3, btnChoice4, btn5050;
     private ImageButton btnSettings;
+    private RatingBar rb_life;
 
-    private String correctAnswer;
+    private String correctAnswer, getChoice1, getChoice2, getChoice3;
     public int levelScore = 0;
     private int questionNum = 1;
     private int userLife = 3;
@@ -67,13 +70,21 @@ public class Quiz extends AppCompatActivity {
         textLevel = findViewById(R.id.textLevel);
         textQuestionNum = findViewById(R.id.textQuestionNum);
         textScore = findViewById(R.id.textScore);
-        textLife = findViewById(R.id.textLife);
+        rb_life = findViewById(R.id.rb_life);
 
         btnSettings = findViewById(R.id.btnSettings);
         btnChoice1 = findViewById(R.id.btnChoice1);
         btnChoice2 = findViewById(R.id.btnChoice2);
         btnChoice3 = findViewById(R.id.btnChoice3);
         btnChoice4 = findViewById(R.id.btnChoice4);
+        btn5050 = findViewById(R.id.btn5050);
+
+        btn5050.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fiftyDialog();
+            }
+        });
 
         String showLevel = "Level " + level;
         textLevel.setText(showLevel);
@@ -110,25 +121,128 @@ public class Quiz extends AppCompatActivity {
         textQuestions.setText(quiz.get(0));
         correctAnswer = quiz.get(1);
 
-        //Shuffles the choices
+        //Shuffles the choices and gets wrong choices
         quiz.remove(0);
+
+        getChoice1 = quiz.get(1);
+        getChoice2 = quiz.get(2);
+        getChoice3 = quiz.get(3);
+
         Collections.shuffle(quiz);
         //Sets the choices randomly
         btnChoice1.setText(quiz.get(0));
         btnChoice2.setText(quiz.get(1));
         btnChoice3.setText(quiz.get(2));
         btnChoice4.setText(quiz.get(3));
+
         //Removes the question and its choices
         quizArray.remove(randomNum);
+
+        btnChoice1.setEnabled(true);
+        btnChoice2.setEnabled(true);
+        btnChoice3.setEnabled(true);
+        btnChoice4.setEnabled(true);
+    }
+
+    public void fiftyDialog() {
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView = getLayoutInflater().inflate(R.layout.activity_sure, null);
+        Button btnYES = mView.findViewById(R.id.btnYES);
+        Button btnNo = mView.findViewById(R.id.btnNO);
+        TextView txtTitle = mView.findViewById(R.id.txtTitle);
+        TextView txtDesc = mView.findViewById(R.id.txtDesc);
+        TextView txtDesc2 = mView.findViewById(R.id.txtDesc2);
+        TextView txtDesc3 = mView.findViewById(R.id.txtDesc3);
+
+        txtTitle.setText("50:50");
+        txtDesc.setText("Removes two wrong choices.");
+        txtDesc2.setText("(Can only be used once)");
+        txtDesc3.setText("Are you sure you want to use this now?");
+
+        btnYES.setText("Yes");
+        btnNo.setText("No");
+
+        mBuilder.setView(mView);
+        final AlertDialog dialog = mBuilder.create();
+        dialog.show();
+        dialog.setCancelable(true);
+
+        btnYES.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeChoices();
+                btn5050.setEnabled(false);
+                dialog.dismiss();
+            }
+        });
+
+        btnNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+
+    public void removeChoices() {
+        remover1();
+        Random r = new Random();
+        int i = r.nextInt(2);
+
+        if (i == 1) {
+            remover2();
+        } else {
+            remover3();
+        }
+
+    }
+
+    public void remover1() {
+        if (btnChoice1.getText().toString().equals(getChoice1)) {
+            btnChoice1.setEnabled(false);
+        } else if (btnChoice2.getText().toString().equals(getChoice1)) {
+            btnChoice2.setEnabled(false);
+        } else if (btnChoice3.getText().toString().equals(getChoice1)) {
+            btnChoice3.setEnabled(false);
+        } else if (btnChoice4.getText().toString().equals(getChoice1)) {
+            btnChoice4.setEnabled(false);
+        }
+    }
+
+    public void remover2() {
+        if (btnChoice1.getText().toString().equals(getChoice2)) {
+            btnChoice1.setEnabled(false);
+        } else if (btnChoice2.getText().toString().equals(getChoice2)) {
+            btnChoice2.setEnabled(false);
+        } else if (btnChoice3.getText().toString().equals(getChoice2)) {
+            btnChoice3.setEnabled(false);
+        } else if (btnChoice4.getText().toString().equals(getChoice2)) {
+            btnChoice4.setEnabled(false);
+        }
+    }
+
+    public void remover3() {
+        if (btnChoice1.getText().toString().equals(getChoice3)) {
+            btnChoice1.setEnabled(false);
+        } else if (btnChoice2.getText().toString().equals(getChoice3)) {
+            btnChoice2.setEnabled(false);
+        } else if (btnChoice3.getText().toString().equals(getChoice3)) {
+            btnChoice3.setEnabled(false);
+        } else if (btnChoice4.getText().toString().equals(getChoice3)) {
+            btnChoice4.setEnabled(false);
+        }
     }
 
     public void updateTextViews() {
         String qText = "Question " + questionNum + "/" + questionCount;
         String showScore = "" + mScore;
-        String showLife = "" + userLife;
-        textLife.setText(showLife);
+
+        rb_life.setRating(userLife);
+
         textQuestionNum.setText(qText);
         textScore.setText(showScore);
+
         giffScore(levelScore, mScore);
     }
 
@@ -147,8 +261,6 @@ public class Quiz extends AppCompatActivity {
     public void checkAnswer(View view) {
         Button answerBtn = findViewById(view.getId());
         String btnText = answerBtn.getText().toString();
-
-
 
         //Adds score when the answer is correct
         if (btnText.equals(correctAnswer)) {

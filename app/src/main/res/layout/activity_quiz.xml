@@ -38,51 +38,47 @@
             android:paddingRight="15dp"
             android:paddingLeft="15dp"/>
 
+        <Button
+            android:id="@+id/btn5050"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/btnSettings"
+            android:layout_toStartOf="@+id/btnSettings"
+            android:background="@drawable/btngreen2_bg"
+            android:textSize="25sp"
+            android:text="50:50" />
+
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="6dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:text="Score" />
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
+        android:paddingTop="6dp">
 
         <TextView
             android:id="@+id/textScore"
             android:textColor="@android:color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="20sp"
             android:text="0" />
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="6dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:text="Life"/>
-
-        <TextView
-            android:id="@+id/textLife"
-            android:textColor="@android:color/black"
+        <RatingBar
+            android:id="@+id/rb_life"
+            style="@style/CustomRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:text="0"/>
+            android:layout_centerVertical="true"
+            android:isIndicator="true"
+            android:numStars="3"
+            android:rating="3" />
 
     </RelativeLayout>
 
@@ -111,6 +107,7 @@
             android:layout_height="wrap_content"
             android:text="Question 0/0"
             android:textSize="12sp" />
+
     </LinearLayout>
 
     <LinearLayout

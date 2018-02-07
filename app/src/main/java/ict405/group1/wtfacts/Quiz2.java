@@ -23,11 +23,11 @@ import java.util.Random;
 
 public class Quiz2 extends AppCompatActivity {
 
-    private TextView textLevel, textQuestions, textQuestionNum, textScore, textLife;
-    private Button btnChoice1, btnChoice2, btnChoice3, btnChoice4;
+    private TextView textLevel, textQuestions, textQuestionNum, textScore;
+    private Button btnChoice1, btnChoice2, btnChoice3, btnChoice4, btn5050;
     private ImageButton btnSettings;
 
-    private String correctAnswer;
+    private String correctAnswer, getChoice1, getChoice2, getChoice3;
     public int levelScore = 0;
     private int questionNum = 1;
     private int userLife = 3;
@@ -73,13 +73,20 @@ public class Quiz2 extends AppCompatActivity {
         textLevel = findViewById(R.id.textLevel);
         textQuestionNum = findViewById(R.id.textQuestionNum);
         textScore = findViewById(R.id.textScore);
-        textLife = findViewById(R.id.textLife);
 
         btnSettings = findViewById(R.id.btnSettings);
         btnChoice1 = findViewById(R.id.btnChoice1);
         btnChoice2 = findViewById(R.id.btnChoice2);
         btnChoice3 = findViewById(R.id.btnChoice3);
         btnChoice4 = findViewById(R.id.btnChoice4);
+        btn5050 = findViewById(R.id.btn5050);
+
+        btn5050.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fiftyDialog();
+            }
+        });
 
         String showLevel = "Level " + level;
         textLevel.setText(showLevel);
@@ -118,6 +125,11 @@ public class Quiz2 extends AppCompatActivity {
 
         //Shuffles the choices
         quiz.remove(0);
+
+        getChoice1 = quiz.get(1);
+        getChoice2 = quiz.get(2);
+        getChoice3 = quiz.get(3);
+
         Collections.shuffle(quiz);
         //Sets the choices randomly
         btnChoice1.setText(quiz.get(0));
@@ -127,18 +139,104 @@ public class Quiz2 extends AppCompatActivity {
         //Removes the question and its choices
         quizArray.remove(randomNum);
 
-        //Sets the background of the buttons
-        String choice1 = btnChoice1.getText().toString();
-        String choice2 = btnChoice2.getText().toString();
-        String choice3 = btnChoice3.getText().toString();
-        String choice4 = btnChoice4.getText().toString();
+        btnChoice1.setEnabled(true);
+        btnChoice2.setEnabled(true);
+        btnChoice3.setEnabled(true);
+        btnChoice4.setEnabled(true);
+    }
+
+    public void fiftyDialog() {
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView = getLayoutInflater().inflate(R.layout.activity_sure, null);
+        Button btnYES = mView.findViewById(R.id.btnYES);
+        Button btnNo = mView.findViewById(R.id.btnNO);
+        TextView txtTitle = mView.findViewById(R.id.txtTitle);
+        TextView txtDesc = mView.findViewById(R.id.txtDesc);
+        TextView txtDesc2 = mView.findViewById(R.id.txtDesc2);
+        TextView txtDesc3 = mView.findViewById(R.id.txtDesc3);
+
+        txtTitle.setText("50:50");
+        txtDesc.setText("Removes two wrong choices.");
+        txtDesc2.setText("(Can only be used once)");
+        txtDesc3.setText("Are you sure you want to use this now?");
+
+        btnYES.setText("Yes");
+        btnNo.setText("No");
+
+        mBuilder.setView(mView);
+        final AlertDialog dialog = mBuilder.create();
+        dialog.show();
+        dialog.setCancelable(true);
+
+        btnYES.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeChoices();
+                btn5050.setEnabled(false);
+                dialog.dismiss();
+            }
+        });
+
+        btnNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+
+    public void removeChoices() {
+        remover1();
+        Random r = new Random();
+        int i = r.nextInt(2);
+
+        if (i == 1) {
+            remover2();
+        } else {
+            remover3();
+        }
+    }
+
+    public void remover1() {
+        if (btnChoice1.getText().toString().equals(getChoice1)) {
+            btnChoice1.setEnabled(false);
+        } else if (btnChoice2.getText().toString().equals(getChoice1)) {
+            btnChoice2.setEnabled(false);
+        } else if (btnChoice3.getText().toString().equals(getChoice1)) {
+            btnChoice3.setEnabled(false);
+        } else if (btnChoice4.getText().toString().equals(getChoice1)) {
+            btnChoice4.setEnabled(false);
+        }
+    }
+
+    public void remover2() {
+        if (btnChoice1.getText().toString().equals(getChoice2)) {
+            btnChoice1.setEnabled(false);
+        } else if (btnChoice2.getText().toString().equals(getChoice2)) {
+            btnChoice2.setEnabled(false);
+        } else if (btnChoice3.getText().toString().equals(getChoice2)) {
+            btnChoice3.setEnabled(false);
+        } else if (btnChoice4.getText().toString().equals(getChoice2)) {
+            btnChoice4.setEnabled(false);
+        }
+    }
+
+    public void remover3() {
+        if (btnChoice1.getText().toString().equals(getChoice3)) {
+            btnChoice1.setEnabled(false);
+        } else if (btnChoice2.getText().toString().equals(getChoice3)) {
+            btnChoice2.setEnabled(false);
+        } else if (btnChoice3.getText().toString().equals(getChoice3)) {
+            btnChoice3.setEnabled(false);
+        } else if (btnChoice4.getText().toString().equals(getChoice3)) {
+            btnChoice4.setEnabled(false);
+        }
     }
 
     public void updateTextViews() {
         String qText = "Question " + questionNum + "/" + questionCount;
         String showScore = "" + mScore;
-        String showLife = "" + userLife;
-        textLife.setText(showLife);
         textQuestionNum.setText(qText);
         textScore.setText(showScore);
         giffScore(levelScore, mScore);
