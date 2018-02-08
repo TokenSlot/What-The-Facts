@@ -156,16 +156,15 @@ public class Quiz4 extends AppCompatActivity {
             public void onClick(View v) {
                 if (questionNum <= 9) {
                     jumpQuestion();
-                    btnSkip.setImageResource(R.drawable.jump_button_disabled);
-                    btnSkip.setEnabled(false);
                 } else {
                     questionNum++;
                     levelScore++;
-                    btnSkip.setImageResource(R.drawable.jump_button_disabled);
-                    btnSkip.setEnabled(false);
                     updateTextViews();
                     resultDialog(userLife, 5, mScore, Quiz5.class);
                 }
+                btnSkip.setBackgroundResource(R.drawable.button_green_pressed);
+                btnSkip.setImageResource(R.drawable.jump_button_disabled);
+                btnSkip.setEnabled(false);
                 dialog.dismiss();
             }
         });

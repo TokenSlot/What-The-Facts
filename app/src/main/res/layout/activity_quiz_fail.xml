@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp">
+    android:padding="10dp">
 
     <TextView
         android:textColor="@android:color/black"
@@ -12,11 +12,11 @@
         android:layout_height="wrap_content"
         android:text="Game Over.."
         android:gravity="center"
-        android:textSize="18sp"/>
+        android:textSize="20sp"/>
 
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="6dp" />
+        android:layout_height="4dp" />
 
     <TextView
         android:id="@+id/text_Check"
@@ -27,11 +27,11 @@
 
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="6dp" />
+        android:layout_height="4dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="100dp">
 
         <ProgressBar
             android:id="@+id/progress_correct"
@@ -46,8 +46,8 @@
 
         <TextView
             android:id="@+id/tv_correct"
-            android:text="0/0"
-            android:textSize="30sp"
+            android:text="10/10"
+            android:textSize="23sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -81,7 +81,7 @@
                 android:textColor="@android:color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:gravity="center"
                 android:text="Thy Answer"/>
 
@@ -106,7 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:text="270"/>
 
         </LinearLayout>
@@ -126,14 +126,14 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="6dp" />
+        android:layout_height="4dp" />
 
     <Button
         android:id="@+id/button_over_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Next Level"
-        android:layout_marginBottom="6dp"
+        android:layout_marginBottom="4dp"
         android:background="@drawable/btngreen_bg"/>
 
     <Button

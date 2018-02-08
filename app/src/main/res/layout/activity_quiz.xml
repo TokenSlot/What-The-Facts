@@ -8,7 +8,8 @@
     tools:ignore="HardcodedText"
     tools:context="ict405.group1.wtfacts.Quiz"
     android:background="@drawable/back5"
-    android:id="@+id/bg_layout">
+    android:id="@+id/bg_layout"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,7 +26,18 @@
             android:text="Level"
             android:textColor="@android:color/white"
             android:textSize="20sp"
-            android:layout_marginLeft="6dp" android:layout_marginStart="6dp"/>
+            android:layout_marginLeft="6dp"
+            android:layout_marginStart="6dp"/>
+
+        <TextView
+            android:id="@+id/textScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="25sp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/black"/>
 
         <ImageButton
             android:id="@+id/btnSettings"
@@ -39,30 +51,6 @@
             android:paddingRight="15dp"
             android:paddingLeft="15dp"/>
 
-        <ImageButton
-            android:id="@+id/btnSkip"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/btn5050"
-            android:layout_toStartOf="@+id/btn5050"
-            android:background="@drawable/btngreen2_bg"
-            android:contentDescription="Jump a Question"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:src="@drawable/button_jump" />
-
-        <Button
-            android:id="@+id/btn5050"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/btnSettings"
-            android:layout_toStartOf="@+id/btnSettings"
-            android:background="@drawable/btngreen2_bg"
-            android:textSize="25sp"
-            android:text="50:50" />
-
     </RelativeLayout>
 
     <RelativeLayout
@@ -71,28 +59,7 @@
         android:paddingLeft="6dp"
         android:paddingRight="6dp">
 
-        <TextView
-            android:id="@+id/textScore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:text="0"
-            android:textSize="25sp"
-            android:background="@drawable/bg_white"
-            android:textColor="@android:color/black"/>
 
-        <RatingBar
-            android:id="@+id/rb_life"
-            style="@style/CustomRatingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:isIndicator="true"
-            android:numStars="3"
-            android:rating="3" />
 
     </RelativeLayout>
 
@@ -102,11 +69,10 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:layout_margin="6dp"
-        android:padding="6dp"
+        android:layout_margin="4dp"
+        android:padding="4dp"
         android:gravity="center"
-        android:background="@drawable/bg_white"
-        >
+        android:background="@drawable/bg_white" >
 
         <TextView
             android:id="@+id/textQuestion"
@@ -129,9 +95,49 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="4dp">
+
+        <ImageButton
+            android:id="@+id/btnSkip"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btngreen_bg"
+            android:contentDescription="Jump a Question"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:src="@drawable/button_jump" />
+
+        <RatingBar
+            android:id="@+id/rb_life"
+            style="@style/CustomRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:layout_gravity="center"
+            android:isIndicator="true"
+            android:numStars="3"
+            android:rating="3" />
+
+        <Button
+            android:id="@+id/btn5050"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+
+            android:layout_height="wrap_content"
+            android:background="@drawable/btngreen_bg"
+            android:textSize="25sp"
+            android:text="50:50" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="6dp"
-        android:splitMotionEvents="false">
+        android:splitMotionEvents="false"
+        android:padding="4dp">
 
         <Button
             android:id="@+id/btnChoice1"

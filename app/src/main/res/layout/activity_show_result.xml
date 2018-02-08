@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp">
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/tv_level"
@@ -16,7 +16,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="100dp">
 
         <ProgressBar
             android:id="@+id/progress_correct"

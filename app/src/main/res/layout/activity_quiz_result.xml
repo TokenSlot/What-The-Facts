@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp">
+    android:padding="10dp">
 
     <TextView
         android:textColor="@android:color/black"
@@ -16,7 +16,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="100dp">
 
         <ProgressBar
             android:id="@+id/progress_correct"
@@ -32,7 +32,7 @@
         <TextView
             android:id="@+id/tv_correct"
             android:text="10/10"
-            android:textSize="30sp"
+            android:textSize="23sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -66,7 +66,7 @@
                 android:textColor="@android:color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:text="3 (+15 points)"/>
 
         </LinearLayout>
@@ -88,7 +88,7 @@
                 android:textColor="@android:color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:text="255"/>
 
         </LinearLayout>
@@ -111,7 +111,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="18sp"
+        android:textSize="15sp"
         android:text="270"/>
 
     <Space
@@ -123,7 +123,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Select Level"
-        android:layout_margin="6dp"
+        android:layout_margin="4dp"
         android:background="@drawable/btndefault_bg"/>
 
     <Button
