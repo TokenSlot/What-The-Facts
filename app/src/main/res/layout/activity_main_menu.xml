@@ -15,9 +15,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:maxWidth="200dp"
-        android:maxHeight="200dp"
-        android:scaleType="fitXY"
+        android:maxWidth="500dp"
+        android:maxHeight="500dp"
+        android:scaleType="fitCenter"
         app:srcCompat="@drawable/logo_img" />
 
     <LinearLayout
