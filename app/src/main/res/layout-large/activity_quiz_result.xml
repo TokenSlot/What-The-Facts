@@ -10,28 +10,13 @@
         android:textColor="@android:color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Game Over.."
+        android:text="Results"
         android:gravity="center"
         android:textSize="18sp"/>
 
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="6dp" />
-
-    <TextView
-        android:id="@+id/text_Check"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Next Level Unlocked!"
-        android:gravity="center"/>
-
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="6dp" />
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="200dp">
 
         <ProgressBar
             android:id="@+id/progress_correct"
@@ -42,11 +27,11 @@
             android:background="@drawable/circle_shape"
             style="?android:attr/progressBarStyleHorizontal"
             android:max="10"
-            android:progress="4"/>
+            android:progress="10"/>
 
         <TextView
             android:id="@+id/tv_correct"
-            android:text="0/0"
+            android:text="10/10"
             android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,16 +59,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Answer"/>
+                android:text="Remaining Life"/>
 
             <TextView
-                android:id="@+id/text_Answer"
+                android:id="@+id/text_plusScore"
                 android:textColor="@android:color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:gravity="center"
-                android:text="Thy Answer"/>
+                android:text="3 (+15 points)"/>
 
         </LinearLayout>
 
@@ -95,19 +79,17 @@
             android:gravity="center">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:text="Score"/>
 
             <TextView
-                android:id="@+id/text_failScore"
+                android:id="@+id/text_score"
                 android:textColor="@android:color/black"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:textSize="18sp"
-                android:text="270"/>
+                android:text="255"/>
 
         </LinearLayout>
 
@@ -115,35 +97,40 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="10dp" />
+        android:layout_height="6dp" />
 
-    <Button
-        android:id="@+id/button_again"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Try Again"
-        android:background="@drawable/btndefault_bg"/>
+        android:gravity="center"
+        android:text="Final Score"/>
+
+    <TextView
+        android:id="@+id/text_finalScore"
+        android:textColor="@android:color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="270"/>
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="6dp" />
 
     <Button
-        android:id="@+id/button_over_next"
+        android:id="@+id/button_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Level"
+        android:layout_margin="6dp"
+        android:background="@drawable/btndefault_bg"/>
+
+    <Button
+        android:id="@+id/button_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Next Level"
         android:background="@drawable/btngreen_bg"/>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="6dp" />
-
-    <Button
-        android:id="@+id/button_menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Main Menu"
-        android:background="@drawable/btnred_bg"/>
 
 </LinearLayout>

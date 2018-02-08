@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.Switch;
@@ -31,7 +33,7 @@ public class Quiz extends AppCompatActivity {
 
     private TextView textLevel, textQuestions, textQuestionNum, textScore;
     private Button btnChoice1, btnChoice2, btnChoice3, btnChoice4, btn5050;
-    private ImageButton btnSettings;
+    private ImageButton btnSettings, btnSkip;
     private RatingBar rb_life;
 
     private String correctAnswer, getChoice1, getChoice2, getChoice3;
@@ -78,6 +80,14 @@ public class Quiz extends AppCompatActivity {
         btnChoice3 = findViewById(R.id.btnChoice3);
         btnChoice4 = findViewById(R.id.btnChoice4);
         btn5050 = findViewById(R.id.btn5050);
+        btnSkip = findViewById(R.id.btnSkip);
+
+        btnSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jumpDialog();
+            }
+        });
 
         btn5050.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +95,7 @@ public class Quiz extends AppCompatActivity {
                 fiftyDialog();
             }
         });
+
 
         String showLevel = "Level " + level;
         textLevel.setText(showLevel);
@@ -109,7 +120,18 @@ public class Quiz extends AppCompatActivity {
         }
         updateTextViews();
         showNextQuiz();
+        /**
+        Random random = new Random();
 
+        LinearLayout bg_layout = findViewById(R.id.bg_layout);
+        Resources res = getResources();
+        TypedArray bgs = res.obtainTypedArray(R.array.bgs);
+
+        int randomInt = random.nextInt(bgs.length());
+        int drawableID = bgs.getResourceId(randomInt, -1);
+        bg_layout.setBackgroundResource(drawableID);
+        bgs.recycle();
+         **/
     }
 
     public void showNextQuiz() {
@@ -143,6 +165,55 @@ public class Quiz extends AppCompatActivity {
         btnChoice3.setEnabled(true);
         btnChoice4.setEnabled(true);
     }
+    public void jumpDialog() {
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView = getLayoutInflater().inflate(R.layout.activity_sure, null);
+        Button btnYES = mView.findViewById(R.id.btnYES);
+        Button btnNo = mView.findViewById(R.id.btnNO);
+        TextView txtTitle = mView.findViewById(R.id.txtTitle);
+        TextView txtDesc = mView.findViewById(R.id.txtDesc);
+        TextView txtDesc2 = mView.findViewById(R.id.txtDesc2);
+        TextView txtDesc3 = mView.findViewById(R.id.txtDesc3);
+
+        txtTitle.setText("Jump A Question");
+        txtDesc.setText("Skips a question but no additional score.");
+        txtDesc2.setText("(Can only be used once)");
+        txtDesc3.setText("Are you sure you want to use this now?");
+
+        btnYES.setText("Yes");
+        btnNo.setText("No");
+
+        mBuilder.setView(mView);
+        final AlertDialog dialog = mBuilder.create();
+        dialog.show();
+        dialog.setCancelable(true);
+
+        btnYES.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jumpQuestion();
+                btnSkip.setImageResource(R.drawable.jump_button_disabled);
+                btnSkip.setEnabled(false);
+                dialog.dismiss();
+            }
+        });
+
+        btnNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+    }
+
+    public void jumpQuestion() {
+        questionNum++;
+        updateTextViews();
+        levelScore++;
+        showNextQuiz();
+    }
+
 
     public void fiftyDialog() {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
@@ -341,9 +412,16 @@ public class Quiz extends AppCompatActivity {
         TextView text_failScore = mView.findViewById(R.id.text_failScore);
         TextView tv_correct = mView.findViewById(R.id.tv_correct);
         TextView text_Answer = mView.findViewById(R.id.text_Answer);
+        TextView text_Check = mView.findViewById(R.id.text_Check);
 
         Button button_again = mView.findViewById(R.id.button_again);
         Button button_menu = mView.findViewById(R.id.button_menu);
+        Button button_next = mView.findViewById(R.id.button_over_next);
+
+        if (mScore < 7) {
+            text_Check.setVisibility(View.GONE);
+            button_next.setVisibility(View.GONE);
+        }
 
         String userCorrect = correct + "/10";
         String userScore = score.toString();
@@ -357,6 +435,17 @@ public class Quiz extends AppCompatActivity {
         final AlertDialog dialog = mBuilder.create();
         dialog.show();
         dialog.setCancelable(false);
+
+        button_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent chooseLevel = new Intent(getApplicationContext(), Quiz2.class);
+                chooseLevel.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                chooseLevel.putExtra("quizLvl", 2);
+                startActivity(chooseLevel);
+                dialog.dismiss();
+            }
+        });
 
         button_again.setOnClickListener(new View.OnClickListener() {
             @Override

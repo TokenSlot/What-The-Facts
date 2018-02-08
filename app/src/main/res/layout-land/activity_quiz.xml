@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:ignore="HardcodedText"
     tools:context="ict405.group1.wtfacts.Quiz"
-    android:background="@drawable/back5"
+    android:background="@drawable/background_5_land"
     android:id="@+id/bg_layout">
 
     <RelativeLayout
@@ -126,57 +126,64 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <android.support.v7.widget.GridLayout
+        android:id="@+id/container_grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="6dp"
-        android:splitMotionEvents="false">
+        app:orientation="horizontal">
 
         <Button
             android:id="@+id/btnChoice1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:background="@drawable/button_choice1"
             android:onClick="checkAnswer"
-            android:text="CHOICE 1" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="6dp" />
+            android:text="CHOICE 1"
+            android:padding="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:gravity="center"
+            app:layout_row="0"
+            app:layout_column="0"
+            android:layout_margin="3dp"/>
 
         <Button
             android:id="@+id/btnChoice2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:background="@drawable/button_choice2"
             android:onClick="checkAnswer"
-            android:text="CHOICE 2" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="6dp" />
+            android:text="CHOICE 2"
+            android:padding="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:gravity="center"
+            app:layout_row="0"
+            app:layout_column="1"
+            android:layout_margin="3dp"/>
 
         <Button
             android:id="@+id/btnChoice3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:background="@drawable/button_choice3"
             android:onClick="checkAnswer"
-            android:text="CHOICE 3" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="6dp" />
+            android:text="CHOICE 3"
+            android:padding="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:gravity="center"
+            app:layout_row="1"
+            app:layout_column="0"
+            android:layout_margin="3dp"/>
 
         <Button
             android:id="@+id/btnChoice4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:background="@drawable/button_choice4"
             android:onClick="checkAnswer"
-            android:text="CHOICE 4" />
+            android:text="CHOICE 4"
+            android:padding="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:gravity="center"
+            app:layout_row="1"
+            app:layout_column="1"
+            android:layout_margin="3dp"/>
 
-    </LinearLayout>
+    </android.support.v7.widget.GridLayout>
 
 </LinearLayout>
