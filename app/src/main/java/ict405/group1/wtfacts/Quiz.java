@@ -46,8 +46,12 @@ public class Quiz extends AppCompatActivity {
 
     // Format >> {Question, Answer, Choice1, Choice 2, Choice 3}
     String quizData[][] = {
-            {"Which company did Valve cooperate with in the creation of the Vive?","HTC","Oculus","Google","Razer"},
+            {"What is the collective noun for a group of crows?","Murder","Pack","Gaggle","Herd"},
+            {"About 71% of the Earth's surface is made up of _____", "Water", "Deserts","Continents","Forests"},
             {"What does 360 degrees make?","Circle","Cube","Square","Triangle"},
+            {"What do you call a baby bat?","Pup","Cub","Chick","Kid"},
+            {"Which is the most abundant element in the universe?","Hydrogen","Helium","Lithium","Oxygen"},
+            {"Which of these mythological creatures is said to be half-man and half-horse?","Centaur","Minotaur","Pegasus","Gorgon"},
             {"What's the name of Batman's parents?","Thomas & Martha","Joey & Jackie","Jason & Sarah","Todd & Mira"},
             {"What does a funambulist walk on?","A Tight Rope","Broken Glass","Balls","The Moon"},
             {"Who is the Roman God of War?","Mars","Jupiter","Juno","Ares"},
@@ -191,9 +195,18 @@ public class Quiz extends AppCompatActivity {
         btnYES.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jumpQuestion();
-                btnSkip.setImageResource(R.drawable.jump_button_disabled);
-                btnSkip.setEnabled(false);
+                if (questionNum <= 9) {
+                    jumpQuestion();
+                    btnSkip.setImageResource(R.drawable.jump_button_disabled);
+                    btnSkip.setEnabled(false);
+                } else {
+                    questionNum++;
+                    levelScore++;
+                    btnSkip.setImageResource(R.drawable.jump_button_disabled);
+                    btnSkip.setEnabled(false);
+                    updateTextViews();
+                    resultDialog(userLife, 3, mScore, Quiz3.class);
+                }
                 dialog.dismiss();
             }
         });
@@ -418,7 +431,12 @@ public class Quiz extends AppCompatActivity {
         Button button_menu = mView.findViewById(R.id.button_menu);
         Button button_next = mView.findViewById(R.id.button_over_next);
 
-        if (mScore < 7) {
+        int checkScore = getCorrectAnswer();
+
+        if (checkScore >= 7 && levelScore >= 7) {
+            text_Check.setVisibility(View.VISIBLE);
+            button_next.setVisibility(View.VISIBLE);
+        } else {
             text_Check.setVisibility(View.GONE);
             button_next.setVisibility(View.GONE);
         }

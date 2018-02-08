@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ public class Quiz4 extends AppCompatActivity {
     private TextView textLevel, textQuestions, textQuestionNum, textScore;
     private Button btnChoice1, btnChoice2, btnChoice3, btnChoice4, btn5050;
     private ImageButton btnSettings, btnSkip;
+    private RatingBar rb_life;
 
     private String correctAnswer, getChoice1, getChoice2, getChoice3;
     public int levelScore = 0;
@@ -76,6 +78,7 @@ public class Quiz4 extends AppCompatActivity {
         textLevel = findViewById(R.id.textLevel);
         textQuestionNum = findViewById(R.id.textQuestionNum);
         textScore = findViewById(R.id.textScore);
+        rb_life = findViewById(R.id.rb_life);
 
         btnSettings = findViewById(R.id.btnSettings);
         btnChoice1 = findViewById(R.id.btnChoice1);
@@ -151,12 +154,22 @@ public class Quiz4 extends AppCompatActivity {
         btnYES.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jumpQuestion();
-                btnSkip.setImageResource(R.drawable.jump_button_disabled);
-                btnSkip.setEnabled(false);
+                if (questionNum <= 9) {
+                    jumpQuestion();
+                    btnSkip.setImageResource(R.drawable.jump_button_disabled);
+                    btnSkip.setEnabled(false);
+                } else {
+                    questionNum++;
+                    levelScore++;
+                    btnSkip.setImageResource(R.drawable.jump_button_disabled);
+                    btnSkip.setEnabled(false);
+                    updateTextViews();
+                    resultDialog(userLife, 5, mScore, Quiz5.class);
+                }
                 dialog.dismiss();
             }
         });
+
 
         btnNo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -297,8 +310,12 @@ public class Quiz4 extends AppCompatActivity {
     public void updateTextViews() {
         String qText = "Question " + questionNum + "/" + questionCount;
         String showScore = "" + mScore;
+
+        rb_life.setRating(userLife);
+
         textQuestionNum.setText(qText);
         textScore.setText(showScore);
+
         giffScore(levelScore, mScore);
     }
 
@@ -392,7 +409,12 @@ public class Quiz4 extends AppCompatActivity {
         Button button_menu = mView.findViewById(R.id.button_menu);
         Button button_next = mView.findViewById(R.id.button_over_next);
 
-        if (mScore < 7) {
+        int checkScore = getCorrectAnswer();
+
+        if (checkScore >= 7 && levelScore >= 7) {
+            text_Check.setVisibility(View.VISIBLE);
+            button_next.setVisibility(View.VISIBLE);
+        } else {
             text_Check.setVisibility(View.GONE);
             button_next.setVisibility(View.GONE);
         }

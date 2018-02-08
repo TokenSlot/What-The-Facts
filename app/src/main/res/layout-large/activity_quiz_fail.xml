@@ -133,11 +133,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Next Level"
+        android:layout_marginBottom="6dp"
         android:background="@drawable/btngreen_bg"/>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="6dp" />
 
     <Button
         android:id="@+id/button_menu"
