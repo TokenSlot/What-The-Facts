@@ -42,7 +42,7 @@ public class Quiz4 extends AppCompatActivity {
 
     // Format >> {Question, Answer, Choice1, Choice 2, Choice 3}
     String quizData[][] = {
-            {"Which of these countries has an element named after it?","Poland","Greece","Philippines","Japan"},
+            {"What kind of weapon is a falchion?","A sword","A bow","A gun","A mace"},
             {"Oneirophobia is the fear of?","Dreams","Truth","Light","Sleeping"},
             {"Pollination by birds is called","Ornithophily","Autogamy","Entomophily","Anemophily"},
             {"Along with Oxygen, which element is primarily responsible for the sky appearing blue?","Nitrogen","Helium","Carbon","Hydrogen"},
@@ -51,10 +51,10 @@ public class Quiz4 extends AppCompatActivity {
             {"According to the Egyptian Myth of Osiris, who murdered Osiris?","Set","Horus","Ra","Anhur"},
             {"What mythical creature has the front of an eagle and back of a horse?","Hippogriff","Longma","Griffon","Chimera"},
             {"In Greek Mythology, who killed Achilles?","Paris","Hector","Helen","Pericles"},
+            {"Hippocampus is the Latin name for which marine creature?","Seahorse","Dolphin","Whale","Octopus"},
             {"What is the only country in the world with a flag that doesn't have four right angles?","Nepal","Panama","Angola","Egypt"},
-            {"How many counties in the Republic of Ireland?","26","32","28","30"},
             {"Which is the largest city in Morocco?","Casablanca","Rabat","Fes","Sale"},
-            {"what does a nucivorous animal eat?","Nuts","Raisins","Fruit","Seaweed"},
+            {"What does a nucivorous animal eat?","Nuts","Raisins","Fruit","Seaweed"},
             {"What is the scientific name for the Polar Bear?","Ursus Maritimus","Ursa Meincansur","Ursus Spelaeus","Ursus Arctos"},
             {"For what reason would a spotted hyena laugh?","Nervousness","Excitement","Aggression","Exhaustion"},
             {"The now extinct species Thylacine was native to where?","Australia","Pakistan","Romania","United States"},

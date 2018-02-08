@@ -44,7 +44,7 @@ public class Quiz2 extends AppCompatActivity {
     String quizData[][] = {
             {"In past times, what would a gentleman keep in his fob pocket?","Watch","Money","Keys","Notebook"},
             {"What is a group of bats called?","Cauldron","Horde","Pace","Gaggle"},
-            {"Hippocampus is the Latin name for which marine creature?","Seahorse","Dolphin","Whale","Octopus"},
+            {"What are tarot cards usually used for?","Fortune Telling","Playing", "Trading", "Magic"},
             {"Alzheimer's disease primarily affects which part of the human body?","Brain","Lungs","Skin","Heart"},
             {"What mythology did the god Apollo came from?","Greek and Roman","Norse and Spanish","Greek and Chinese","Norse and Greek"},
             {"What is the more scientific name for quicksilver?","Mercury","Cadmium","Lead","Bromine"},

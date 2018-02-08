@@ -54,6 +54,8 @@ public class Quiz5 extends AppCompatActivity {
             {"Which is not a type of neuron?","Perception Neuron","Sensory Neuron","Motor Neuron","Interneuron"},
             {"Which of the following is NOT a real element?","Vitrainium","Praseodymium","Hassium","Lutetium"},
             {"Who is the Egyptian god of reproduction and lettuce?","Min","Menu","Mut","Meret"},
+            {"What does a nidologist study?","Bird Nests","Clouds","Waves","Caves"},
+            {"Deipnophobia is the fear of ________.","Dinner Conversations","Cellphone Battery Depletion","Police Sirens","Silverware"},
             {"Which of the following is NOT a god in Norse Mythology?","Jens","Loki","Tyr","Snotra"},
             {"In Norse mythology, what is the name of the serpent which eats the roots of the ash tree Yggdrasil?","Nidhogg","Bragi","Shenron","Ymir"},
             {"What type of creature is a Bonobo?","Ape","Lion","Parrot","Wildcat"},
