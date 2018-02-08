@@ -189,7 +189,7 @@ public class Quiz5 extends AppCompatActivity {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         View mView = getLayoutInflater().inflate(R.layout.activity_sure, null);
         Button btnYES = mView.findViewById(R.id.btnYES);
-        Button btnNo = mView.findViewById(R.id.btnNO);
+        final Button btnNo = mView.findViewById(R.id.btnNO);
         TextView txtTitle = mView.findViewById(R.id.txtTitle);
         TextView txtDesc = mView.findViewById(R.id.txtDesc);
         TextView txtDesc2 = mView.findViewById(R.id.txtDesc2);
@@ -213,6 +213,7 @@ public class Quiz5 extends AppCompatActivity {
             public void onClick(View v) {
                 removeChoices();
                 btn5050.setEnabled(false);
+                btn5050.setBackgroundResource(R.drawable.button_green_pressed);
                 dialog.dismiss();
             }
         });

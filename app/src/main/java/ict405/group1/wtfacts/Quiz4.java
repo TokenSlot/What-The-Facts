@@ -214,6 +214,7 @@ public class Quiz4 extends AppCompatActivity {
             public void onClick(View v) {
                 removeChoices();
                 btn5050.setEnabled(false);
+                btn5050.setBackgroundResource(R.drawable.button_green_pressed);
                 dialog.dismiss();
             }
         });
