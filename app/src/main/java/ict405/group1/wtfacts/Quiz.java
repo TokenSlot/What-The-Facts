@@ -129,7 +129,7 @@ public class Quiz extends AppCompatActivity {
         }
         updateTextViews();
         showNextQuiz();
-        /**
+        /*
         Random random = new Random();
 
         LinearLayout bg_layout = findViewById(R.id.bg_layout);
@@ -140,7 +140,7 @@ public class Quiz extends AppCompatActivity {
         int drawableID = bgs.getResourceId(randomInt, -1);
         bg_layout.setBackgroundResource(drawableID);
         bgs.recycle();
-         **/
+        */
     }
 
     @Override

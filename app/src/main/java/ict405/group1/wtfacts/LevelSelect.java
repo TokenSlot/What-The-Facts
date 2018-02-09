@@ -91,7 +91,7 @@ public class LevelSelect extends AppCompatActivity {
         } else {
             btnLvl4.setBackgroundResource(R.drawable.btndefault_bg);
         }
-
+        /*
         if(countCorrect4 >= 7) {
             btnLvl5.setEnabled(true);
             btnLvl5.setText("5");
@@ -99,6 +99,11 @@ public class LevelSelect extends AppCompatActivity {
         } else {
             btnLvl5.setEnabled(false);
         }
+        */
+
+        btnLvl5.setEnabled(true);
+        btnLvl5.setText("5");
+        btnLvl5.setTextSize(30);
 
         //Level 5
         countCorrect5 = getCorrectAnswer5();

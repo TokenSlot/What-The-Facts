@@ -414,7 +414,7 @@ public class Quiz5 extends AppCompatActivity {
 
         Button button_again = mView.findViewById(R.id.button_again);
         Button button_menu = mView.findViewById(R.id.button_menu);
-        Button button_next = mView.findViewById(R.id.button_next);
+        Button button_next = mView.findViewById(R.id.button_over_next);
 
         text_Check.setVisibility(View.GONE);
         button_next.setVisibility(View.GONE);
