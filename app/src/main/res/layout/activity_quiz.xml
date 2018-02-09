@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:ignore="HardcodedText"
     tools:context="ict405.group1.wtfacts.Quiz"
-    android:background="@drawable/back5"
+    android:background="@drawable/back1"
     android:id="@+id/bg_layout">
 
     <RelativeLayout
@@ -51,17 +51,6 @@
             android:paddingLeft="15dp"/>
 
     </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="6dp"
-        android:paddingRight="6dp">
-
-
-
-    </RelativeLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"

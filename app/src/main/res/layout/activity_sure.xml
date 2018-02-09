@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="15dp">
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/txtTitle"
@@ -14,7 +14,7 @@
         android:gravity="center"
         android:text="TITLE"
         android:textColor="@android:color/black"
-        android:textSize="21sp" />
+        android:textSize="20sp" />
     
     <Space
         android:layout_width="wrap_content"
@@ -28,10 +28,6 @@
         android:text="This will blah blah"
         android:gravity="center"/>
 
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="6dp" />
-
     <TextView
         android:id="@+id/txtDesc2"
         android:textColor="@android:color/holo_red_dark"
@@ -42,7 +38,7 @@
 
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="4dp" />
+        android:layout_height="6dp" />
 
     <TextView
         android:id="@+id/txtDesc3"

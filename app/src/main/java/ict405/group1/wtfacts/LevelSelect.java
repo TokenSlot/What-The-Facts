@@ -35,6 +35,12 @@ public class LevelSelect extends AppCompatActivity {
         //Level 1
         countCorrect = getCorrectAnswer();
         countScore = getUserScore();
+        if (countCorrect == 10) {
+            btnLvl1.setBackgroundResource(R.drawable.btngreen_bg);
+        } else {
+            btnLvl1.setBackgroundResource(R.drawable.btndefault_bg);
+        }
+
         if(countCorrect >= 7) {
             btnLvl2.setEnabled(true);
             btnLvl2.setText("2");
@@ -46,6 +52,12 @@ public class LevelSelect extends AppCompatActivity {
         //Level 2
         countCorrect2 = getCorrectAnswer2();
         countScore2 = getUserScore2();
+        if (countCorrect2 == 10) {
+            btnLvl2.setBackgroundResource(R.drawable.btngreen_bg);
+        } else {
+            btnLvl2.setBackgroundResource(R.drawable.btndefault_bg);
+        }
+
         if(countCorrect2 >= 7) {
             btnLvl3.setEnabled(true);
             btnLvl3.setText("3");
@@ -57,6 +69,12 @@ public class LevelSelect extends AppCompatActivity {
         //Level 3
         countCorrect3 = getCorrectAnswer3();
         countScore3 = getUserScore3();
+        if (countCorrect3 == 10) {
+            btnLvl3.setBackgroundResource(R.drawable.btngreen_bg);
+        } else {
+            btnLvl3.setBackgroundResource(R.drawable.btndefault_bg);
+        }
+
         if(countCorrect3 >= 7) {
             btnLvl4.setEnabled(true);
             btnLvl4.setText("4");
@@ -68,6 +86,12 @@ public class LevelSelect extends AppCompatActivity {
         //Level 4
         countCorrect4 = getCorrectAnswer4();
         countScore4 = getUserScore4();
+        if (countCorrect4 == 10) {
+            btnLvl4.setBackgroundResource(R.drawable.btngreen_bg);
+        } else {
+            btnLvl4.setBackgroundResource(R.drawable.btndefault_bg);
+        }
+
         if(countCorrect4 >= 7) {
             btnLvl5.setEnabled(true);
             btnLvl5.setText("5");
@@ -79,6 +103,11 @@ public class LevelSelect extends AppCompatActivity {
         //Level 5
         countCorrect5 = getCorrectAnswer5();
         countScore5 = getUserScore5();
+        if (countCorrect5 == 10) {
+            btnLvl5.setBackgroundResource(R.drawable.btngreen_bg);
+        } else {
+            btnLvl5.setBackgroundResource(R.drawable.btndefault_bg);
+        }
 
         btnLvl1.setOnClickListener(new View.OnClickListener() {
             @Override

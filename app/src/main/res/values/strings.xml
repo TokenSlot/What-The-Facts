@@ -1,20 +1,4 @@
 <resources>
     <string name="app_name">WTFacts</string>
     <string name="title_activity_exit">Exit</string>
-
-    <array name="bgs">
-        <item>@drawable/background_1</item>
-        <item>@drawable/background_2</item>
-        <item>@drawable/background_3</item>
-        <item>@drawable/background_4</item>
-        <item>@drawable/background_5</item>
-        <item>@drawable/background_6</item>
-        <item>@drawable/background_7</item>
-        <item>@drawable/background_8</item>
-        <item>@drawable/background_9</item>
-        <item>@drawable/background_10</item>
-        <item>@drawable/background_11</item>
-        <item>@drawable/background_12</item>
-
-    </array>
 </resources>

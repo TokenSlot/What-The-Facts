@@ -186,6 +186,6 @@ public class MainMenu extends AppCompatActivity {
 }
 
     /* TODO
-    * Designs
+    * Random Backgrounds
     * Landscape? Design
     * Sound effects. Maybe */
