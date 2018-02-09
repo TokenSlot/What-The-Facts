@@ -361,7 +361,7 @@ public class Quiz5 extends AppCompatActivity {
             updateTextViews();
             //When userLife reaches 0 when subtracted by 1, game over dialog will appear
             if (userLife == 0) {
-                gameOverDialog(1, levelScore, mScore, Quiz.class);
+                gameOverDialog(5, levelScore, mScore, Quiz5.class);
             }
         } else {
             correctDialog(correctAnswer);
@@ -391,7 +391,7 @@ public class Quiz5 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (questionNum == questionCount) {
-                    resultDialog(userLife, 2, mScore, Quiz2.class);
+                    resultDialog(userLife, null, mScore, null);
                 } else {
                     questionNum++;
                     showNextQuiz();
