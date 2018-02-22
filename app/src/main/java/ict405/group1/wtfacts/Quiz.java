@@ -17,10 +17,12 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,6 +38,7 @@ public class Quiz extends AppCompatActivity {
     private Animation animShake;
 
     private String correctAnswer, getChoice1, getChoice2, getChoice3;
+    private boolean vibrateOn, soundOn;
     public int levelScore = 0;
     private int questionNum = 1;
     private int userLife = 3;
@@ -345,6 +348,11 @@ public class Quiz extends AppCompatActivity {
         return mSharedPreferences.getBoolean("vibrate",  true);
     }
 
+    public boolean getSoundBool() {
+        SharedPreferences mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        return mSharedPreferences.getBoolean("sound",  true);
+    }
+
     public void vibration() {
         if (getVibBool()) {
             Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -353,13 +361,17 @@ public class Quiz extends AppCompatActivity {
     }
 
     public void playCorrect() {
-        MediaPlayer mpCorrect = MediaPlayer.create(this, R.raw.correct);
-        mpCorrect.start();
+        if(getSoundBool()) {
+            MediaPlayer mpCorrect = MediaPlayer.create(this, R.raw.correct);
+            mpCorrect.start();
+        }
     }
 
     public void playWrong() {
-        MediaPlayer mpWrong = MediaPlayer.create(this,R.raw.wrong);
-        mpWrong.start();
+        if(getSoundBool()) {
+            MediaPlayer mpWrong = MediaPlayer.create(this,R.raw.wrong);
+            mpWrong.start();
+        }
     }
 
     public void checkAnswer(View view) {
@@ -641,6 +653,48 @@ public class Quiz extends AppCompatActivity {
         Button btnResume = mView.findViewById(R.id.btnResume);
         Button btnLevel = mView.findViewById(R.id.btnLevel);
         Button btnExit = mView.findViewById(R.id.btnExit);
+        final Switch vibOn = mView.findViewById(R.id.vibration);
+        final Switch sounds = mView.findViewById(R.id.sounds);
+
+        if(getVibBool()) {
+            vibOn.setChecked(true);
+        } else {
+            vibOn.setChecked(false);
+        }
+
+        if(getSoundBool()) {
+            sounds.setChecked(true);
+        } else {
+            sounds.setChecked(false);
+        }
+
+        vibOn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    vibOn.setText("Vibration On");
+                    vibrateOn = true;
+                } else {
+                    vibOn.setText("Vibration Off");
+                    vibrateOn = false;
+                }
+                vibData(vibrateOn);
+            }
+        });
+
+        sounds.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    sounds.setText("Sounds On");
+                    soundOn = true;
+                } else {
+                    sounds.setText("Sounds Off");
+                    soundOn = false;
+                }
+                soundData(soundOn);
+            }
+        });
 
         btnLevel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -673,6 +727,20 @@ public class Quiz extends AppCompatActivity {
         });
 
         dialog.show();
+    }
+
+    public void vibData(Boolean isOn) {
+        SharedPreferences mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putBoolean("vibrate", isOn);
+        mEditor.apply();
+    }
+
+    public void soundData(Boolean isOn) {
+        SharedPreferences mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putBoolean("sound", isOn);
+        mEditor.apply();
     }
 
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Vibrator;
@@ -15,9 +16,11 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,6 +36,7 @@ public class Quiz2 extends AppCompatActivity {
     private Animation animShake;
 
     private String correctAnswer, getChoice1, getChoice2, getChoice3;
+    private boolean vibrateOn, soundOn;
     public int levelScore = 0;
     private int questionNum = 1;
     private int userLife = 3;
@@ -327,12 +331,14 @@ public class Quiz2 extends AppCompatActivity {
     }
 
 
+
     public void checkAnswer(View view) {
         Button answerBtn = findViewById(view.getId());
         String btnText = answerBtn.getText().toString();
 
         //Adds score when the answer is correct
         if (btnText.equals(correctAnswer)) {
+            playCorrect();
             levelScore = levelScore + 1;
             mScore = mScore + 25;
             view.setBackgroundResource(R.drawable.button_green_pressed);
@@ -353,6 +359,7 @@ public class Quiz2 extends AppCompatActivity {
         //Checks if the answer is wrong else correct dialog will appear
         if (!correctAnswer.equals(btnText) && userLife != 0) {
             userLife = userLife - 1;
+            playWrong();
             view.setBackgroundResource(R.drawable.button_red_pressed);
             view.startAnimation(animShake);
             vibration();
@@ -583,6 +590,48 @@ public class Quiz2 extends AppCompatActivity {
         Button btnResume = mView.findViewById(R.id.btnResume);
         Button btnLevel = mView.findViewById(R.id.btnLevel);
         Button btnExit = mView.findViewById(R.id.btnExit);
+        final Switch vibOn = mView.findViewById(R.id.vibration);
+        final Switch sounds = mView.findViewById(R.id.sounds);
+
+        if(getVibBool()) {
+            vibOn.setChecked(true);
+        } else {
+            vibOn.setChecked(false);
+        }
+
+        if(getSoundBool()) {
+            sounds.setChecked(true);
+        } else {
+            sounds.setChecked(false);
+        }
+
+        vibOn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    vibOn.setText("Vibration On");
+                    vibrateOn = true;
+                } else {
+                    vibOn.setText("Vibration Off");
+                    vibrateOn = false;
+                }
+                vibData(vibrateOn);
+            }
+        });
+
+        sounds.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    sounds.setText("Sounds On");
+                    soundOn = true;
+                } else {
+                    sounds.setText("Sounds Off");
+                    soundOn = false;
+                }
+                soundData(soundOn);
+            }
+        });
 
         btnLevel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -617,10 +666,49 @@ public class Quiz2 extends AppCompatActivity {
         dialog.show();
     }
 
+    public boolean getVibBool() {
+        SharedPreferences mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        return mSharedPreferences.getBoolean("vibrate",  true);
+    }
+
+    public boolean getSoundBool() {
+        SharedPreferences mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        return mSharedPreferences.getBoolean("sound",  true);
+    }
+
     public void vibration() {
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        // Vibrate for 500 milliseconds
-        v.vibrate(200);
+        if (getVibBool()) {
+            Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            v.vibrate(200);
+        }
+    }
+
+    public void playCorrect() {
+        if(getSoundBool()) {
+            MediaPlayer mpCorrect = MediaPlayer.create(this, R.raw.correct);
+            mpCorrect.start();
+        }
+    }
+
+    public void playWrong() {
+        if(getSoundBool()) {
+            MediaPlayer mpWrong = MediaPlayer.create(this,R.raw.wrong);
+            mpWrong.start();
+        }
+    }
+
+    public void vibData(Boolean isOn) {
+        SharedPreferences mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putBoolean("vibrate", isOn);
+        mEditor.apply();
+    }
+
+    public void soundData(Boolean isOn) {
+        SharedPreferences mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putBoolean("sound", isOn);
+        mEditor.apply();
     }
 
 }

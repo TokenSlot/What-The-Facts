@@ -20,7 +20,7 @@
         android:id="@+id/sounds"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Vibration On"
+        android:text="Sounds On"
         android:textSize="15sp" />
 
     <Space

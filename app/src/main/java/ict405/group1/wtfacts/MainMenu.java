@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class MainMenu extends AppCompatActivity {
 
-    Boolean vibrateOn;
+    Boolean vibrateOn, soundOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +79,7 @@ public class MainMenu extends AppCompatActivity {
         Button btnReset = mView.findViewById(R.id.btnReset);
         Button btnAbout = mView.findViewById(R.id.btnAbout);
         final Switch vibOn = mView.findViewById(R.id.vibration);
+        final Switch sounds = mView.findViewById(R.id.sounds);
 
         btnAbout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,19 +94,37 @@ public class MainMenu extends AppCompatActivity {
             vibOn.setChecked(false);
         }
 
+        if(getSoundBool()) {
+            sounds.setChecked(true);
+        } else {
+            sounds.setChecked(false);
+        }
+
         vibOn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     vibOn.setText("Vibration On");
                     vibrateOn = true;
-                    Toast.makeText(getApplicationContext(), "Vibration On", Toast.LENGTH_SHORT).show();
                 } else {
                     vibOn.setText("Vibration Off");
                     vibrateOn = false;
-                    Toast.makeText(getApplicationContext(), "Vibration off", Toast.LENGTH_SHORT).show();
                 }
                 vibData(vibrateOn);
+            }
+        });
+
+        sounds.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    sounds.setText("Sounds On");
+                    soundOn = true;
+                } else {
+                    sounds.setText("Sounds Off");
+                    soundOn = false;
+                }
+                soundData(soundOn);
             }
         });
 
@@ -132,11 +151,22 @@ public class MainMenu extends AppCompatActivity {
         return mSharedPreferences.getBoolean("vibrate",  true);
     }
 
+    public boolean getSoundBool() {
+        SharedPreferences mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        return mSharedPreferences.getBoolean("sound",  true);
+    }
+
     public void vibData(Boolean isOn) {
         SharedPreferences mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();
         mEditor.putBoolean("vibrate", isOn);
+        mEditor.apply();
+    }
 
+    public void soundData(Boolean isOn) {
+        SharedPreferences mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putBoolean("sound", isOn);
         mEditor.apply();
     }
 
