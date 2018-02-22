@@ -124,8 +124,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:splitMotionEvents="false"
-        android:padding="4dp">
+        android:splitMotionEvents="false">
 
         <Button
             android:id="@+id/btnChoice1"
@@ -133,6 +132,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/button_choice1"
             android:onClick="checkAnswer"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:text="CHOICE 1" />
 
         <Space
@@ -145,6 +146,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/button_choice2"
             android:onClick="checkAnswer"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:text="CHOICE 2" />
 
         <Space
@@ -157,6 +160,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/button_choice3"
             android:onClick="checkAnswer"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:text="CHOICE 3" />
 
         <Space
@@ -169,6 +174,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/button_choice4"
             android:onClick="checkAnswer"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="4dp"
             android:text="CHOICE 4" />
 
     </LinearLayout>

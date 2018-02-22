@@ -1,12 +1,9 @@
 package ict405.group1.wtfacts;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Vibrator;
@@ -15,14 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -33,6 +29,8 @@ public class Quiz2 extends AppCompatActivity {
     private Button btnChoice1, btnChoice2, btnChoice3, btnChoice4, btn5050;
     private ImageButton btnSettings, btnSkip;
     private RatingBar rb_life;
+
+    private Animation animShake;
 
     private String correctAnswer, getChoice1, getChoice2, getChoice3;
     public int levelScore = 0;
@@ -57,11 +55,11 @@ public class Quiz2 extends AppCompatActivity {
             {"What’s the best drink for your body?","Water","Coffee","Tea","Energy Drink"},
             {"Which country’s flag is commonly referred to as the “Rising Sun”?","Japan","Vietnam","Korea","China"},
             {"The “Mona Lisa” is an example of what kind of art technique?","Oil Painting","Acrylic Painting","Casein Painting","Panel Painting"},
-            {"Which of the following words means “not tight”?","Loose","Lose","Roose","Host"},
-            {"Which of these elements on the Periodic Table is a Noble Gas?","Neon","Potassium","Iodine","Colbalt"},
+            {"Which of the following words means “not tight”?","Loose","Lose","Roose","Moose"},
+            {"Which of these elements on the Periodic Table is a Noble Gas?","Neon","Potassium","Iodine","Cobalt"},
             {"What is a male goose called?","Gander","Rooster","Gobbler","Drake"},
             {"Who was the Greek equivalent of the Roman god Cupid?","Eros","Artemis","Janus","Tyche"},
-            {"What is the largest animal currently on Earth?","Blue Whale","Orca","Colossal Squid","Giraffe"},
+            {"What is the largest animal currently on Earth?","Blue Whale","African Elephant","Colossal Squid","Masai Giraffe"},
             {"On Twitter, what is the character limit for a Tweet?","140","120","100","110"},
             {"The body of the Egyptian Sphinx was based on which animal?","Lion","Bull","Horse","Dog"},
     };
@@ -75,6 +73,7 @@ public class Quiz2 extends AppCompatActivity {
 
         Intent getScore1 = getIntent();
         int level = getScore1.getIntExtra("quizLvl", 0);
+        animShake = AnimationUtils.loadAnimation(this, R.anim.shake);
 
         textQuestions = findViewById(R.id.textQuestion);
         textLevel = findViewById(R.id.textLevel);
@@ -201,7 +200,7 @@ public class Quiz2 extends AppCompatActivity {
                     updateTextViews();
                     resultDialog(userLife, 3, mScore, Quiz3.class);
                 }
-                btnSkip.setBackgroundResource(R.drawable.button_green_pressed);
+                btnSkip.setBackgroundResource(R.drawable.button_default_pressed);
                 btnSkip.setImageResource(R.drawable.jump_button_disabled);
                 btnSkip.setEnabled(false);
                 dialog.dismiss();
@@ -253,7 +252,7 @@ public class Quiz2 extends AppCompatActivity {
             public void onClick(View v) {
                 removeChoices();
                 btn5050.setEnabled(false);
-                btn5050.setBackgroundResource(R.drawable.button_green_pressed);
+                btn5050.setBackgroundResource(R.drawable.button_default_pressed);
                 dialog.dismiss();
             }
         });
@@ -355,6 +354,7 @@ public class Quiz2 extends AppCompatActivity {
         if (!correctAnswer.equals(btnText) && userLife != 0) {
             userLife = userLife - 1;
             view.setBackgroundResource(R.drawable.button_red_pressed);
+            view.startAnimation(animShake);
             vibration();
             updateTextViews();
             //When userLife reaches 0 when subtracted by 1, game over dialog will appear

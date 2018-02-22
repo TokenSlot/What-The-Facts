@@ -17,6 +17,17 @@
         android:layout_height="4dp" />
 
     <Switch
+        android:id="@+id/sounds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vibration On"
+        android:textSize="15sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="4dp" />
+
+    <Switch
         android:id="@+id/vibration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

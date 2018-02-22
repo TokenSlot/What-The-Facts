@@ -1,13 +1,11 @@
 package ict405.group1.wtfacts;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Vibrator;
@@ -16,20 +14,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Quiz extends AppCompatActivity {
 
@@ -37,6 +32,8 @@ public class Quiz extends AppCompatActivity {
     private Button btnChoice1, btnChoice2, btnChoice3, btnChoice4, btn5050;
     private ImageButton btnSettings, btnSkip;
     private RatingBar rb_life;
+
+    private Animation animShake;
 
     private String correctAnswer, getChoice1, getChoice2, getChoice3;
     public int levelScore = 0;
@@ -76,6 +73,7 @@ public class Quiz extends AppCompatActivity {
 
         Intent getScore1 = getIntent();
         int level = getScore1.getIntExtra("quizLvl", 0);
+        animShake = AnimationUtils.loadAnimation(this, R.anim.shake);
 
         textQuestions = findViewById(R.id.textQuestion);
         textLevel = findViewById(R.id.textLevel);
@@ -105,7 +103,6 @@ public class Quiz extends AppCompatActivity {
             }
         });
 
-
         String showLevel = "Level " + level;
         textLevel.setText(showLevel);
 
@@ -127,6 +124,7 @@ public class Quiz extends AppCompatActivity {
 
             quizArray.add(tmpArray);
         }
+
         updateTextViews();
         showNextQuiz();
         /*
@@ -215,7 +213,7 @@ public class Quiz extends AppCompatActivity {
                     updateTextViews();
                     resultDialog(userLife, 2, mScore, Quiz2.class);
                 }
-                btnSkip.setBackgroundResource(R.drawable.button_green_pressed);
+                btnSkip.setBackgroundResource(R.drawable.button_default_pressed);
                 btnSkip.setImageResource(R.drawable.jump_button_disabled);
                 btnSkip.setEnabled(false);
                 dialog.dismiss();
@@ -267,7 +265,7 @@ public class Quiz extends AppCompatActivity {
             public void onClick(View v) {
                 removeChoices();
                 btn5050.setEnabled(false);
-                btn5050.setBackgroundResource(R.drawable.button_green_pressed);
+                btn5050.setBackgroundResource(R.drawable.button_default_pressed);
                 dialog.dismiss();
             }
         });
@@ -354,12 +352,24 @@ public class Quiz extends AppCompatActivity {
         }
     }
 
+    public void playCorrect() {
+        MediaPlayer mpCorrect = MediaPlayer.create(this, R.raw.correct);
+        mpCorrect.start();
+    }
+
+    public void playWrong() {
+        MediaPlayer mpWrong = MediaPlayer.create(this,R.raw.wrong);
+        mpWrong.start();
+    }
+
     public void checkAnswer(View view) {
+        preventSpam();
         Button answerBtn = findViewById(view.getId());
         String btnText = answerBtn.getText().toString();
 
         //Adds score when the answer is correct
         if (btnText.equals(correctAnswer)) {
+            playCorrect();
             levelScore = levelScore + 1;
             mScore = mScore + 25;
             view.setBackgroundResource(R.drawable.button_green_pressed);
@@ -381,6 +391,8 @@ public class Quiz extends AppCompatActivity {
         if (!correctAnswer.equals(btnText) && userLife != 0) {
             userLife = userLife - 1;
             view.setBackgroundResource(R.drawable.button_red_pressed);
+            playWrong();
+            view.startAnimation(animShake);
             vibration();
             updateTextViews();
             //When userLife reaches 0 when subtracted by 1, game over dialog will appear
@@ -430,6 +442,7 @@ public class Quiz extends AppCompatActivity {
     }
 
     public void gameOverDialog(final Integer level, Integer correct, Integer score, final Class myClass) {
+
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         View mView = getLayoutInflater().inflate(R.layout.activity_quiz_fail, null);
 
@@ -560,6 +573,24 @@ public class Quiz extends AppCompatActivity {
                 } else if (view.getId() == R.id.btnChoice4) {
                     view.setBackgroundResource(R.drawable.button_choice4);
                 }
+            }
+        }, 500);
+    }
+
+    public void preventSpam() {
+        btnChoice1.setEnabled(false);
+        btnChoice2.setEnabled(false);
+        btnChoice3.setEnabled(false);
+        btnChoice4.setEnabled(false);
+
+        Handler timer = new Handler(Looper.getMainLooper());
+        timer.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                btnChoice1.setEnabled(true);
+                btnChoice2.setEnabled(true);
+                btnChoice3.setEnabled(true);
+                btnChoice4.setEnabled(true);
             }
         }, 500);
     }
